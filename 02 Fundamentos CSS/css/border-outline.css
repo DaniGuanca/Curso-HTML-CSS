@@ -1,0 +1,55 @@
+/*Para hacer circular borde*/
+.box{
+  background-color: black;
+  width: 400px;
+  height: 400px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  border: thick solid red;
+}
+
+.border-radius{
+  border-top-left-radius: 4rem;
+  border-top-right-radius: 4rem;
+  border-bottom-left-radius: 4rem;
+  border-bottom-right-radius: 4rem;
+  border-radius: 2rem; /*shorthand para los 4 lados*/
+  border-radius: 2rem 4rem; /*shortHand, arriba izquierda 2rem, arriba derecha 4, abajo derecha 2, abajo izquierda 4*/
+  border-radius: 2rem 4rem 0; /*shortHand arriba izquierda 2, arriba derecha 4, abajo derecha 0, abajo izquierda 2*/
+  border-radius: 4rem 3rem 2rem 1rem;/*shortHand arriba izquierda 4, arriba derecha 3, abajo derecha 2, abajo izquierda 1*/
+
+  border-radius: 2rem;
+}
+
+/*Para bordes elipticos
+    Para hacerlo eliptico tengo que poner un valor y despues la barra (/) y despues otro valor
+*/
+.border-radius-eliptic {
+  border-radius: 2rem / 4rem; /*2rem en el radio horizontal de la elipse, 4 rem en el radio vertical de la elipse (Las elipses tienen dos radios). Su shorthandes medio confunso conviene usarlo individualmente con border-top-left-radius etc*/
+}
+
+/*
+Para hacer un circulo perfecto es suficiente con poner al 50% los 4 lados, LA CAJA TIENE QUE SER CUADRADA PRIMERO OBVIAMENTE, si es rectangular va a pasar cualquier cosa
+*/
+.border-radius-circulo{
+  border-radius: 50%;
+}
+
+/*
+Outline
+  El outline como lo dice el nombre es un borde exterior a la caja. Se usa con:
+    outline: shorthand para outline-color outline-style outline-width
+    O tambien se pueden usar las propiedades individualmente
+*/
+.outline{
+  color: white;
+  text-align: center;
+
+  outline-width: 5px;
+  outline-style: dashed;
+  outline-color: chartreuse;
+  outline: thick solid blue;
+  outline-offset: 4rem; /*Cuanto me alejo de la caja tambien se puede aplicar en sentido negativo*/
+}

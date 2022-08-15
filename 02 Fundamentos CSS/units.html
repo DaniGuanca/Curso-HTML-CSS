@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/units.css">
+  <title>Unidades de Medida en CSS</title>
+</head>
+
+<body>
+  <h1>Unidades de Medida</h1>
+
+  <h2>Pixeles</h2>
+  <div class="pixels">
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam commodi dolorem aliquid omnis possimus qui quas odit
+    excepturi autem at, ad, perferendis est ex odio, soluta fugit nam suscipit nisi.
+  </div>
+
+  <h2>Ems</h2>
+  <div class="ems">
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam commodi dolorem aliquid omnis possimus qui quas odit
+    excepturi autem at, ad, perferendis est ex odio, soluta fugit nam suscipit nisi.
+    <section class="em-child">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat earum iusto quis accusamus similique assumenda,
+      animi cupiditate sunt, quod cum natus maxime repellendus suscipit, atque enim ea necessitatibus? Aliquid, eaque?
+    </section>
+  </div>
+
+  <h2>Rems (Root Em)</h2>
+  <div class="rems">
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam commodi dolorem aliquid omnis possimus qui quas odit
+    excepturi autem at, ad, perferendis est ex odio, soluta fugit nam suscipit nisi.
+    <section class="rem-child">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat earum iusto quis accusamus similique assumenda,
+      animi cupiditate sunt, quod cum natus maxime repellendus suscipit, atque enim ea necessitatibus? Aliquid, eaque?
+    </section>
+  </div>
+
+  <h2>Exs</h2>
+  <div class="exs">
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam commodi dolorem aliquid omnis possimus qui quas odit
+    excepturi autem at, ad, perferendis est ex odio, soluta fugit nam suscipit nisi.
+    <section class="ex-child">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat earum iusto quis accusamus similique assumenda,
+      animi cupiditate sunt, quod cum natus maxime repellendus suscipit, atque enim ea necessitatibus? Aliquid, eaque?
+    </section>
+  </div>
+
+  <h2>Chs</h2>
+  <div class="chs">
+    1234567890
+  </div>
+  <div class="chs">
+    qwertyasdfg
+  </div>
+
+  <h2>Porcentajes</h2>
+  <div class="percentages">
+    Caja de bloque
+  </div>
+  <!-- 
+  Acordarse que las cajas de linea no se le pueden modificar el ancho y tampoco darle margenes horizontales  
+  <span class="percentages">
+    Caja de linea
+  </span> -->
+
+  <!--Porcentajes son respecto al padre, padding de 5% es respecto al padre
+      EXCEPTO LA ALTURA, La altura la define el contenido
+    Acá abajo hago una caja padre con las dimensiones bien definidas en pixeles y al hijo le doy dimensiones en porcentajes entonces si las agarra el height en porcentaje porque se basa en la dimension del padre
+    -->
+  <div class="height-parent">
+    <div class="height-child">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque nisi ex iste assumenda doloribus adipisci, ullam
+      quisquam, alias ad ab ipsa deserunt aliquid odit beatae laborum ratione rem autem unde?
+    </div>
+  </div>
+
+  <!--VW y VH Este ya es repeceto al viewport-->
+  <h2>Viewports Units</h2>
+  <div class="viewports">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, deleniti id. Suscipit est
+    ipsum neque totam tempora adipisci rem magnam laudantium sint ut, praesentium, aliquam quas pariatur dolorem labore
+    iure.</div>
+
+  <div class="vmax">
+    Caja vmax
+  </div>
+
+  <div class="vmin">
+    Caja vmin
+  </div>
+
+
+  <a href="index.html#temario-css">☝️</a>
+</body>
+
+</html>

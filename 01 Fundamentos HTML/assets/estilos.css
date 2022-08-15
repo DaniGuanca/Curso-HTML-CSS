@@ -1,0 +1,9 @@
+h1 {
+  color: darkolivegreen;
+}
+
+/*se adapta al ancho de la pantalla*/
+img {
+  max-width: 100%;
+  height: auto;
+}

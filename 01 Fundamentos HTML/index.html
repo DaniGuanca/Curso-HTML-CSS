@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aprendiendo HTML</title>
+  <!--Meta description es importante para el SEO, es la descripcion que va a aparecer en google si es que aparece la pagina-->
+  <meta name="description"
+    content="Esta descripcion se veria en el resultado del buscador de google al buscar esta pagina">
+  <link rel="stylesheet" href="assets/estilos.css">
+
+  <!--Otra etiqueta que puede servir para el SEO, es la URL canonica del sitio
+  LA URL CANONICA ES LA ORIGINAL, DE AHI SE DERIVAN LAS OTRAS CON VARIABLES ?=&, EL MOTOR DE BUSQUEDA VA A TENER EN CUENTA LA CANONICA-->
+  <link rel="canonical" href="http://miDominio.com/LA-URL-CANONICA">
+
+  <!--Para el favicon y apple touch conviene usarlos en formato png-->
+  <!--Favicon-->
+  <link rel="icon" href="img/favicon.png">
+  <!--Apple touch icon-->
+  <link rel="apple-touch-icon" href="img/favicon.png">
+
+  <!--META ETIQUETA PARA EL COLOR DE LA BARRA DEL NAVEGADOR EN EL CELULAR, ESTA ESTA BUENA-->
+  <meta name="theme-color" content="#001E36">
+
+  <!--PUEDO CUANTAS QUIERA POR SECCION EJEMPLO DOMINIO.COM/ALGO , DOMINIO.COM/OTRA-COSA-->
+  <!--https://ogp.me/ EN ESTA PAGINA ESTA TODA LA INFORMACION.
+    Basicamente es para poder hacer una tarjeta que tengal a imagen titulo y descripcion de la pagina cuando se comparte
+    por enlace la mayoria la usan, y otros la usan con modificaciones por ejemplo twitter, hay que entrar a la pagina de desarrolladores para ver como usarla para twitter-->
+  <meta property="og:title" content="Aprendiendo HTML">
+  <meta property="og:description"
+    content="Esta descripcion se veria en el resultado del buscador de google al buscar esta pagina">
+  <meta>
+  <!--Si o si la ruta absoluta-->
+  <meta property="og:image" content="https://DOMINIO.COM/img/img.jpg">
+  <meta property="og:url" content="https:://DOMINIO.COM">
+
+  <!--para twitter-->
+  <meta name="twitter:card"
+    content="Esta descripcion se veria en el resultado del buscador de google al buscar esta pagina">
+  <meta name="twitter:site" content="@daniguanca">
+</head>
+
+<body>
+  <ul id="menu">
+    <li class="item"><a href="">Seccion 1</a></li>
+    <li class="item"><a href="">Seccion 2</a></li>
+    <li class="item"><a href="">Seccion 3</a></li>
+    <li class="item"><a href="">Seccion 4</a></li>
+  </ul>
+
+  <h1>HOLAAA</h1>
+
+  <h3>Temario del Curso</h3>
+  <!-- ul>li*18>a -->
+  <ul>
+    <li><a href="index.html#encabezados">Encabezados HTML</a></li>
+    <li><a href="index.html#textos-basicos">Etiquetas de Texto Básicas</a></li>
+    <li><a href="index.html#textos-semanticos">Etiquetas de Texto Semánticas</a></li>
+    <li><a href="index.html#etiquetas-saltos">Etiquetas de Saltos</a></li>
+    <li><a href="index.html#etiquetas-formateo">Etiquetas de Formateo</a></li>
+    <li><a href="index.html#etiquetas-semanticas">Etiquetas Semánticas Estructurales</a></li>
+    <li><a href="index.html#bloque-linea">Etiquetas de Bloque VS Etiquetas de Línea</a></li>
+    <li><a href="index.html#estilos-css">Estilos CSS en HTML</a></li>
+    <li><a href="index.html#scripts-js">Scripts en HTML</a></li>
+    <li><a href="index.html#imagenes">Imágenes</a></li>
+    <li><a href="index.html#svg">SVG</a></li>
+    <li><a href="index.html#figuras">Figuras</a></li>
+    <li><a href="index.html#listas-ordenadas">Listas Ordenadas</a></li>
+    <li><a href="index.html#listas-desordenadas">Listas de Desordenadas</a></li>
+    <li><a href="index.html#listas-definicion">Listas de Definición</a></li>
+    <li><a href="index.html#tablas">Tablas</a></li>
+    <li><a href="index.html#enlaces">Enlaces</a></li>
+    <li><a href="index.html#elementos-interactivos">Elementos Interactivos</a></li>
+    <li><a href="index.html#audio-video">Audio y Video</a></li>
+    <li><a href="index.html#iframes">Iframes</a></li>
+    <li><a href="index.html#formularios">Formularios</a></li>
+    <li><a href="index.html#data-attributes">Data Attributes</a></li>
+    <li><a href="index.html#metas-seo">Metaetiquetas para SEO y móviles</a></li>
+    <li><a href="index.html#metas-social">Metaetiquetas para Redes Sociales</a></li>
+    <li><a href="index.html#accesibilidad">Accesibilidad Web</a></li>
+  </ul>
+
+  <h2 id="inicio">Etiquetas semanticas estructurales</h2>
+  <div>Es una etiqueta contenedora qe no tiene semantica</div>
+  <header>Header - Cabecera de un sitio web o una seccion</header>
+  <main>main - Es la seccion principal del documento; solo puede haber UNO solo por html</main>
+  <footer>footer - Pie de pagina del sitio web o de una seccion de un sitop</footer>
+  <nav>nav - Representa una navegacion como menu de navegacion</nav>
+  <article>article - Representa un articulo osea una seccion autocontenido (que por si sola se explica)</article>
+  <aside>aside - Representa contenido complementario o secundario</aside>
+  <section>section - representa un seccion de contenido generico</section>
+
+  <h2>Etiquetas de Bloque vs de linea</h2>
+  <div>La etiqueta de bloque por excelencia es la div</div>
+  <span>La etiqueta de linea por excelencia es la span</span>
+
+  <hr>
+  <h2>Imagenes</h2>
+  <img src="http://placehold.it/" alt="texto a cargar si esta rota">
+
+  <hr>
+  <h2>Figura</h2>
+  Como las figuras de los libros, una imagen con un texto abajo
+  <figure>
+    <img src="img/img.jpg" alt="bolo">
+    <figcaption>Texto que va abajo de la imagen</figcaption>
+  </figure>
+
+  <hr>
+  <h2>Lista ordenada</h2>
+  <ol>
+    <li>una</li>
+    <li>dos</li>
+    <li>tres</li>
+  </ol>
+
+  <!--Empiezo desde 3-->
+  <ol start="3">
+    <li>unito</li>
+    <li>dos</li>
+    <li>tres</li>
+  </ol>
+
+  <!--al reves-->
+  <ol reversed>
+    <li>unito</li>
+    <li>dos</li>
+    <li>tres</li>
+  </ol>
+
+  <!--type elijo numeros o letras para ordenar-->
+  <ol type="a">
+    <li>unito</li>
+    <li>dos</li>
+    <li>tres</li>
+  </ol>
+
+  <hr>
+  <h2 id="listas-desordenadas">Listas Desordenadas</h2>
+  <h3>Cosas por hacer:</h3>
+  <ul>
+    <li>Terminar de grabar los fragmentos del curso de HTML</li>
+    <li>Editar el video final</li>
+    <li>subirlo a YouTube</li>
+  </ul>
+  <ul type="circle">
+    <li>Terminar de grabar los fragmentos del curso de HTML</li>
+    <li>Editar el video final</li>
+    <li>subirlo a YouTube</li>
+  </ul>
+  <ul type="square">
+    <li>Terminar de grabar los fragmentos del curso de HTML</li>
+    <li>Editar el video final</li>
+    <li>subirlo a YouTube</li>
+  </ul>
+  <br>
+
+
+  <hr>
+  <h2 id="listas-definicion">Listas de Definición</h2>
+  <dl>
+    <dt>HTML</dt>
+    <dd>Es un lenguaje de marcado que define el contenido de la web</dd>
+    <dt>CSS</dt>
+    <dd>ES un lenguaje de definición que da estilos al código HTML</dd>
+    <dt>JavaScript</dt>
+    <dd>Es el lenguaje de la web</dd>
+  </dl>
+  <br>
+  <a href="index.html#inicio">☝️</a>
+  <hr>
+  <h2 id="tablas">Tablas</h2>
+  <table>
+    <tr>
+      <td>Nombre</td>
+      <td>Constelación</td>
+      <td>Tipo</td>
+    </tr>
+    <tr>
+      <td>Ikki</td>
+      <td>Fénix</td>
+      <td>Bronce</td>
+    </tr>
+    <tr>
+      <td>Shaina</td>
+      <td>Ofiuco</td>
+      <td>Plata</td>
+    </tr>
+    <tr>
+      <td>Saga</td>
+      <td>Géminis</td>
+      <td>Dorado</td>
+    </tr>
+  </table>
+  <br><br><br>
+  <table>
+    <thead>
+      <tr>
+        <th colspan="3">Tabla de los Santos de Athena</th>
+      </tr>
+      <tr>
+        <th>Nombre</th>
+        <th>Constelación</th>
+        <th>Tipo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Ikki</td>
+        <td>Fénix</td>
+        <td>Bronce</td>
+      </tr>
+      <tr>
+        <td>Mistry</td>
+        <td>Lagarto</td>
+        <td>Plata</td>
+      </tr>
+      <tr>
+        <td>Saga</td>
+        <td>Géminis</td>
+        <td>Dorado</td>
+      </tr>
+      <tr>
+        <td>Shaina</td>
+        <td rowspan="2">Ofiuco</td>
+        <td>Plata</td>
+      </tr>
+      <tr>
+        <td>Odiseo</td>
+        <td>Dorado</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="3"><small>Saint Seiya fue creado por Masami Kurumada</small></th>
+      </tr>
+    </tfoot>
+  </table>
+  <br>
+  <a href="index.html#inicio">☝️</a>
+
+  <hr>
+  <h2 id="enlaces">Enlaces</h2>
+  <a href="hola.html">Hacia la página Hola</a>
+  <br>
+  <a href="https://jonmircha.com" target="_blank" rel="nofollow">Visita mi sitio web jonmircha.com</a>
+  <br>
+  <a href="https://jonmircha.com/cursos" target="_blank">
+    <img src="img/img.jpg" alt="Ir hacia mis cursos en jonmircha.com" width="40" height="40">
+  </a>
+  <br>
+  <a href="https://youtube.com/jonmircha" target="_blank">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd"
+        d="M5 7H19C19.5523 7 20 7.44771 20 8V16C20 16.5523 19.5523 17 19 17H5C4.44772 17 4 16.5523 4 16V8C4 7.44772 4.44772 7 5 7ZM2 8C2 6.34315 3.34315 5 5 5H19C20.6569 5 22 6.34315 22 8V16C22 17.6569 20.6569 19 19 19H5C3.34315 19 2 17.6569 2 16V8ZM10 9L14 12L10 15V9Z"
+        fill="currentColor" />
+    </svg>
+  </a>
+  <br>
+  <a href="mailto:hola@jonmircha.com">Enlace a correo electrónico</a>
+  <br>
+  <a href="tel:5215512345678">Enlace a télefono</a>
+  <br>
+  <!--ESTO LO SACAMOS DE LA API DE WPP CON ESTO PODEMOS ENVIAR UN MENSAJE AL NUMERO DE 
+  TELEFONO EN LA VARIABLE PHONE, Y SI QUEREMOS UN TEXTO POR DEFAULT VA EN LA VARIABLE TEXT-->
+  <a href="https://api.whatsapp.com/send?phone=5215512345678&text=Hola">Enlace hacia WhatsApp</a>
+
+  <br>
+  <a href="index.html#inicio">☝️</a>
+  <hr>
+  <hr>
+  <br><br><br>
+  <h2 id="elementos-interactivos">Elementos Interactivos</h2>
+  <script src="assets/codigos.js"></script>
+  <button onclick="alert('Clickeaste el boton')">Este es un boton</button>
+  <!--Etiqueta para hacer acordeones-->
+  <br><br>
+  <details>
+    <summary>Titulo del acordeon</summary>
+    <!--Despues del titulo ya va todo lo que quiera en el cuerpo-->
+    <article>
+      <h3>Contenido del acordeon</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat cupiditate repudiandae, voluptatum minima vero
+        maiores quis ab recusandae fuga dolores, error ad aut illum ullam officiis. Amet obcaecati praesentium ducimus.
+      </p>
+      <img src="img/img.jpg" alt="nada" style="width: 10%; height: auto;">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat cupiditate repudiandae, voluptatum minima vero
+        maiores quis ab recusandae fuga dolores, error ad aut illum ullam officiis. Amet obcaecati praesentium ducimus.
+      </p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat cupiditate repudiandae, voluptatum minima vero
+        maiores quis ab recusandae fuga dolores, error ad aut illum ullam officiis. Amet obcaecati praesentium ducimus.
+      </p>
+    </article>
+  </details>
+
+  <br><br>
+  <!--Con open aparece abierto por defecto-->
+  <details open>
+    <summary>Titulo del acordeon</summary>
+    <!--Despues del titulo ya va todo lo que quiera en el cuerpo-->
+    <article>
+      <h3>Contenido del acordeon</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat cupiditate repudiandae, voluptatum minima vero
+        maiores quis ab recusandae fuga dolores, error ad aut illum ullam officiis. Amet obcaecati praesentium ducimus.
+      </p>
+      <img src="img/img.jpg" alt="nada" style="width: 10%; height: auto;">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat cupiditate repudiandae, voluptatum minima vero
+        maiores quis ab recusandae fuga dolores, error ad aut illum ullam officiis. Amet obcaecati praesentium ducimus.
+      </p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat cupiditate repudiandae, voluptatum minima vero
+        maiores quis ab recusandae fuga dolores, error ad aut illum ullam officiis. Amet obcaecati praesentium ducimus.
+      </p>
+    </article>
+  </details>
+
+  <!--AHORA VA A MOSTRAR UNA NUEVA ETIQUETA PARA HACER MODALES!!!!!!!!!!!!!!!!!!-->
+  <!--Pero es EXPERIMENTAL asi que se recomienda no usarla todavia y seguir haciendo manualmente con html y css-->
+  <!--La etiqueta es dialog por defecto como todo modal viene oculta, para abrirlo se usa el atributo open-->
+  <!--En MDN mozilla esta una explicacion de como se usa con javascript, se usa un metodo showDialog()-->
+  <dialog open>
+    Esto es una ventana modal en HTML
+  </dialog>
+  <hr>
+  <a href="index.html#inicio">☝️</a>
+
+
+  <!--Audio y video-->
+  <h2 id="audio-video">Audio y video</h2>
+  <hr>
+  <a href="index.html#inicio">☝️</a>
+  <!--Con etiqueta audio traigo audios, hay que poner el atributo controls para que salga el reproductor sino no sale nada-->
+  <!--IMAGENES AUDIO Y VIDEO SON ETIQUETAS EN LINEA!!-->
+  <!--Audio tambien tiene atributo autoplay, loop, muted, preload entre otros-->
+  <!--El atributo preload es recomendado para que vaya cargando antes de que aprete el boton-->
+  <!--LA ETIQUETA VIDEO FUNCIONA IGUAL QUE LA DE AUDIO-->
+  <audio src="media/03-dr_dre_feat_snoop_doggy_dogg-deep_cover_(inst)-spike_int.mp3" controls></audio>
+  <!--El atributo poster de video es para poner una miniatura como imagen-->
+  <video src="media/Video Logitech.mp4" controls poster="img/img.jpg"></video>
+  <br>
+  <hr>
+  <a href="index.html#inicio">☝️</a>
+
+  <!--IFRAMES-->
+  <!--Esta etiqueta es de linea-->
+  <!--Es para inscrustar elementos de otra pagina, conviene evitarlos siempre que se pueda porque da problemas de carga y usar ajax
+  sirve mucho para pdf y esas cosas.-->
+  <h2 id="iframes">iframes</h2>
+  <!--Es parecida a la etiqueta de audio y video, en src va la url de lo que quiero encastrar, frameborder es un borde-->
+  <iframe src="https://es.wikipedia.org/wiki/LeBron_James" frameborder="1"
+    style="width: 80%; height: 400px; margin:auto;"></iframe>
+
+  <br>
+  <br>
+
+  <!--SE PUEDEN PONER PDFS-->
+  <iframe src="media/Curriculum Vitae Guanca Jorge Daniel Antonio.pdf" frameborder="1"
+    style="width: 80%; height: 400px; margin:auto;"></iframe>
+
+  <br><br>
+
+  <!--Google maps y youtube usan iframe-->
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2573.581160099606!2d-65.30057450428062!3d-24.185989248944434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x941b0f4313922973%3A0x552c0eaeb6432a0!2sPlaza%20Belgrano!5e0!3m2!1ses!2sar!4v1642534271537!5m2!1ses!2sar"
+    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+  <br><br>
+
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/s-xEBnxxDOc" title="YouTube video player"
+    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen></iframe>
+  <hr>
+  <a href="index.html#inicio">☝️</a>
+
+  <!--FORMULARIOS-->
+  <h2 id="formularios">Formularios</h2>
+  <h3>Elementos de formularios</h3>
+  <!--El elemento mas basico es el input, todos son de tipo linea, type text es por defecto-->
+  <input type="text">
+  <br>
+  <input type="checkbox">
+  <br>
+  <input type="radio">
+  <br>
+  <!--Este ya esta bien lindo podria usarlo en vez de buscar otros en la web-->
+  <input type="date">
+  <br>
+  <!--Este esta re piola-->
+  <input type="color">
+  <br>
+  <!--Eso como un boton-->
+  <input type="button" value="Boton">
+  <br>
+  <!--El input submit cuando esta dentro de un formulario hace el envio de los datos de dicho formulario-->
+  <input type="submit">
+  <br>
+  <!--Reset reestablece todos los campos del formulario del que este-->
+  <input type="reset">
+  <br>
+  <!--Para subir archivos-->
+  <input type="file">
+  <br>
+  <!--Con el atributo multiple puedo seleccionar varios archivos-->
+  <input type="file" multiple>
+  <br>
+  <!--Los inputs hidden no se ven se usan para guardar y enviar valores como variables mediante el atributo name-->
+  <input type="hidden" name="idioma" value="español">
+  <br>
+  <!--Para poner emails, valida que sea emails en los telefonos en el teclado tactil te pone un @-->
+  <input type="email">
+  <br>
+  <!--Tipo number para pponer numeros, en el celular te abre el teclado de numeros-->
+  <input type="number">
+  <br>
+  <!--El tipo tel para pedir numeros de telefonos-->
+  <input type="tel">
+  <br>
+  <!--Tipo password para esconder lo que escribe el usuario-->
+  <input type="password">
+  <br>
+  <!--El input tipo search permite borrar lo que escribimos con un icono que sale adentro-->
+  <input type="search">
+  <br>
+  <textarea cols="50" rows="5"></textarea>
+  <br>
+  <!--select permite seleccionar entre varias opciones-->
+  <select>
+    <option>HTML</option>
+    <option>CSS</option>
+    <option>JavaScript</option>
+  </select>
+  <!--Tambien se puede usar el atributo multiple para que permita elegir varias opciones-->
+  <br>
+  <select multiple>
+    <option>HTML</option>
+    <option>CSS</option>
+    <option>JavaScript</option>
+    <option>PHP</option>
+    <option>C#</option>
+  </select>
+  <br>
+
+  <!--Atributos de inputs-->
+  <!--readonly: solo lectura
+  disabled: inhabilitado-->
+  <input type="text" readonly value="Dani" disabled>
+  <br>
+  <!--PlaceHolder-->
+  <input type="text" placeholder="Escribe tu nombre">
+  <br>
+
+  <h3>Ejemplo de formularios</h3>
+  <h4>Formulario de login</h4>
+  <!--SIEMPRE TIENE QUE TENER EL ATRIBUTO NAME PORQUE ES EL NOMBRE DE LA VARIABLE-->
+  <!--Form es elemento de bloque, action es a donde se va a enviar el formulario hay que ponerle name a los inputs para el nombre de la variable, en una direccion url se pondria automaticamente ?name
+  con METHOD elijo el protocolo como por ejemplo GET y POST, por defecto es GET
+  Con GET lo manda por URL
+  Si usamos con metodo POST lo manda en la cabecera del formulario en forma oculta, ya no lo manda por la URL
+  SI NO PONGO ACTION SIGNIFICA QUE SE VA A AUTOPROCESAR -->
+  <!--El atributo de formulario autocomplete en off me desactiva el autocompletado TAMBIEN SE PUEDE PONER EN UN INPUT SI SOLO QUIERO QUE UNOS ESPECIFICOS NO AUTOCOMPLETEN-->
+  <form action="" method="" autocomplete="off">
+    <!--Los label que es para mostrar un texto, el atributo FOR hace que se vincule al input que tenga el id que puse en el for
+    vincular hace que cuando hago click en el label me manda al input para escribir-->
+    <!--Required es para no dejar hacer el submit hasta que no llenen los campos que tengan el required-->
+    <!--PATTERN es para que el formulario valide un patron al hacer el submit, para usarlos se hace con expresiones regulares ESTO LO VI EN EL CURSO DE JAVASCRIPT-->
+    <label for="usuario">Usuario</label>
+    <!--Pongo un patron para que solo acepte letras-->
+    <!--El atributo title es el mensaje que muestra cuando no se cumpla una validacion de pattern-->
+    <input id="usuario" type="text" name="usuario" placeholder="Escribe tu usuario" required pattern="^[A-Za-z]+$"
+      title="El campo solo acepta letras">
+    <br>
+    <label for="password">Password</label>
+    <input id="password" type="password" name="password" placeholder="Escribe tu contraseña" required>
+    <br>
+    <input type="submit">
+    <br>
+    <input type="reset">
+  </form>
+  <hr>
+  <a href="index.html#inicio">☝️</a>
+
+  <!--RADIOS Y CHECKBOXS-->
+  <h4>Selects,Radios y Checkbox</h4>
+  <form>
+    <p>Elije tu idioma</p>
+    <!--El id es opcional, el name es necesario para tener el nombre de la variable va a ir por ejemplo por queryString-->
+    <select name="idioma">
+      <option selected value="">Elije una opcion</option>
+      <option value="es">Español</option>
+      <option value="en">Ingles</option>
+      <option value="fr">Frances</option>
+      <option value="it">Italiano</option>
+      <option value="pt">Portugues</option>
+    </select>
+
+    <!--RadioBoton te deja elegir solo una opcion de varias-->
+    <!--Todas las opciones del radioboton deben tener el mismo name ASI SOLO QUEDA UN VALOR PARA LA VARIABLE, hay que ponerle el value porque es el valor de la variable
+    si no tiene value le pone de nombre on como prendido-->
+    <!--Checked es como el selected de los select-->
+    <!--Para usar el REQUIRED solo hace falta ponerle a uno de los radio no hace falta ponerle a todos-->
+    <p>Elije tu lenguaje de programacion favorito</p>
+    <input type="radio" name="lenguaje" id="radio-js" value="js">
+    <label for="radio-js">JavaScript</label>
+    <input checked type="radio" name="lenguaje" id="radio-py" value="py">
+    <label for="radio-py">Python</label>
+    <input type="radio" name="lenguaje" id="radio-php" value="php">
+    <label for="radio-php">PHP</label>
+
+    <br>
+    <!--Checkbox permite seleccionar varias opciones-->
+    <!--TRUQUITO: cuando hay muchos checkbox y quiero vincularle un label a todos en vez de ir poniendo un for a cada uno directamente puedo hacer la etiqueta label y adentro meter los input tipo checkbox-->
+    <label>
+      <input type="checkbox" name="intereses" value="deportes">
+      Deportes
+    </label>
+
+    <label>
+      <input type="checkbox" name="intereses" value="finanzas">
+      Finanzas
+    </label>
+
+    <label>
+      <input type="checkbox" name="intereses" value="salud">
+      Salud
+    </label>
+
+    <label>
+      <input type="checkbox" name="intereses" value="politica">
+      Politica
+    </label>
+
+    <label>
+      <input type="checkbox" name="intereses" value="ecologia">
+      Ecologia
+    </label>
+
+    <br>
+    <label>
+      <input type="checkbox" name="terminos" required>
+      Aceptas terminos?
+    </label>
+    <input type="submit">
+    <input type="reset">
+  </form>
+  <hr>
+  <a href="index.html#inicio">☝️</a>
+
+
+
+  <!--FORMULARIO DE CONTACTO-->
+  <!--Mircha va a usar el formSubmit como lo usamos en el curso de javascript-->
+  <h4>Formulario de contacto</h4>
+  <form action="https://formsubmit.co/dany12rp13@gmail.com" method="POST">
+    <input type="text" name="nombre" placeholder="Escribe tu nombre" pattern="^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$"
+      title="Nombre solo acepta letras y espacios en blanco" required>
+    <br>
+    <input type="email" name="correo" placeholder="Escribe tu correo" pattern="^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$"
+      required title="Formato de correo invalido">
+    <br>
+    <!--Textarea no acepta pattern-->
+    <textarea name="comentarios" id="" cols="30" rows="10" required></textarea>
+    <br>
+    <input type="submit">
+  </form>
+  <hr>
+  <a href="index.html#inicio">☝️</a>
+
+  <BR>
+  <br>
+
+
+
+  <!--DATA ATTRIBUTES-->
+  <h2 ID="data-attributes">Data Attributes</h2>
+
+  <!--Sirve para agregar atributos que nosotros inventamos a las etiquetas
+    para usarlo hay que poner data-NOMBRE 
+    Para acceder desde javascipt es elemento.dataset.NOMBRE-->
+  <ul>
+    <li data-id="1" data-name="spring">Primavera</li>
+    <li data-id="2" data-name="fall">Otoño</li>
+    <li data-id="3" data-name="winter">Invierno</li>
+    <li data-id="4" data-name="summer">Verano</li>
+  </ul>
+  <hr>
+  <a href="index.html#inicio">☝️</a>
+
+  <br />
+
+  <!--Metaetiquetas SEO-->
+  <h2 id="metas-seo">Metaetiquetas para SEO</h2>
+  <p>Las meta etiquetas esten el head del html</p>
+
+  <!--Metaetiquetas para Redes Sociales-->
+  <h2 id="metas-social">Metaetiquetas para SEO</h2>
+  <p>Las meta etiquetas esten el head del html</p>
+  <p>https://ogp.me/ EN ESTA PAGINA ESTA TODA LA INFORMACION.
+    Basicamente es para poder hacer una tarjeta que tengal a imagen titulo y descripcion de la pagina cuando se comparte
+    por enlace
+  </p>
+
+  <br>
+
+  <h2 id="accesibilidad">Accesibilidad Web</h2>
+  <!--Esto es solo una intro, el tema de la accesibilidad web es todo otro mundo dentro de html
+  se entra con role, esto hace que un lector lea lo que es y que tiene a las personas con problemas de vista
+  aria-label es una descripcion para que el lector lea
+  tab-index es para cuando vas pasando con la tecla TAB del teclado, con el tab index se le cambia el orden en que va pasando-->
+  <h3 role="title">Estaciones del año</h3>
+  <ul role="list">
+    <li tabindex="1" role="listitem">Primavera</li>
+    <li tabindex="2" role="listitem">Otoño</li>
+    <li tabindex="4" role="listitem">Invierno</li>
+    <li tabindex="3" role="listitem">Verano</li>
+  </ul>
+  <a href="#" aria-label="En este enlace vas a encontrar mas cosas relacionadas" role="link">Mas informacion</a>
+  <p>🟠 Accesibilidad en la Web
+    - https://web.dev/accessible/
+    - https://html5accessibility.com/
+    - https://www.w3.org/blog/news/archives...
+    - https://www.youtube.com/channel/UCU6l...</p>
+
+  <hr>
+  <a href="index.html#inicio">☝️</a>
+</body>
+
+</html>

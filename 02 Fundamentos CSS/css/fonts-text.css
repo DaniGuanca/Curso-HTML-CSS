@@ -1,0 +1,130 @@
+/*
+  font-family
+  font-size
+  font-weight
+  font-style
+  font-variant
+  font
+  line-height
+
+  En la pagina de CSSREFERNCE hay mucho ejemplos del uso de etiqu
+*/
+.font{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: sans-serif;
+  font-size: 32px;
+  font-weight: 200; /*Peso de la tipografia. De 100 a 900, generalmente 400 es el normal*/
+  font-style: italic; /*Estilo de la fuente*/
+  font-variant: small-caps; /*Es la variante del texto hay 2: normal y small-caps que pone todo en mayuscula*/
+  line-height: 2; /*Es el interlineado el espacio en la altura entre letras.*/
+  font: italic small-caps 200 32px / 2 sans-serif ; /*Font es shorthand para font-style font-variant font-weight font-size / line-height font-family. IMPORTANTE HAY QUE PONER LA BARRA ENTRE EL FONT SIZE Y LINE HEIGHT*/
+}
+
+/*
+ CARGAR FUENTE EXTERNAS
+    Hay que tener los archivos fisicos de la tipografia en formato woff o woff2 (Web open font format). Para utilizarlas hay que usar la etiqueta @font-face y adentro en la propiedad font-family ponemos el nombre que le damos a la tipografia. Y en src la ruta del archivo fisico woff.
+    Y despues ya puedo usarla en las etiquetas con el nombre entre comillas.    
+*/
+
+@font-face {
+  font-family: "Chalet";
+  src: url("../assets/Chalet.woff");
+  /* src: url("../assets/Chalet.woff") format("woff"), url("../assets/Chalet.woff2") format("woff2"); En caso de que tenga varios formatos de donde poder tomarlo, se queda con el correcto */
+  font-display: swap;
+}
+
+.chalet{
+  font-family: "Chalet", sans-serif; /*Uso mi tipografia externa si no la puede cargar usa sans serif*/
+  font-size: 2rem;
+}
+
+@font-face {
+  font-family: "Pesita", sans-serif;
+  src: url("../assets/Pecita.woff");
+  font-display: swap;
+}
+
+.pesita{
+  font-family: "Pesita", cursive;
+  font-size: 2rem;
+}
+
+/*
+Tambien tenemos una propiedad que se llama font-display que tiene mas opciones de como cargar las fuentes externas, estas opciones son:
+      font-display:
+        auto - permite que el navegador use el metodo predeterminado que suele ser block
+        block - oculta brevemente el texto hasta que la fuente haya sido descargada por completo
+        swap - indica al navegador que utilice la fuente alternativa para mostrar el texto hasta que la fuente personalizada se haya cargado por completo
+        fallback - es una mezcla de auto y swap
+        optional - ocultara el texto, luego lo cargara en la fuente alternativa y finalmente aplicara la fuente personalizada
+
+Swap es la ideal
+*/
+
+/*Google Fonts*/
+.raleway{
+  font-family: 'Raleway',
+  sans-serif;
+  font-size: 2rem;
+}
+
+/*
+Estilos de texto
+  text-align
+  text-decoration
+  text-indent: genera una tabulacion UNA SANGRIA.
+  text-overflow: para cuando el texto desborda de la caja. Tengo dos opciones clip: lo corta ; y ellipsis pone punto suspensivos donde desborda.
+    Para usarlo tengo que tener esto:
+      overflow: hidden;
+      white-space: no wrap;
+  text-transform: para poner todo en mayuscula o minuscula, o la primer letra en mayuscula (capital)
+  letter-spacing: espaciado de cada caracter
+  white-space: nos dice que hacer con los espacios en blanco. nowrap corta todos los saltos de linea y deja todo en una unica linea.
+    Cuando muchos espacios en blancos seguidos el navegador solo toma uno, para que respete todos los espacios en blanco puedo ponerle el valor PRE.
+
+  word-break: si lo pongo en break all rompe toda la palabra para hacerla entrar en el espacio
+  word-spacing: como el letter spacing pero para palabras
+  writing-mode: modo de escritura, en oriente escriben al reves que nosotros. O tambien de arriba abajo verticalmente o invertirlo
+*/
+
+.text-overflow{
+  background-color: blanchedalmond;
+  border: thin solid black;
+  padding: 1rem;
+  width: 50%;
+  font-size: 2rem;
+  text-align: center;
+  text-decoration: underline;
+  text-indent: 1rem;
+  text-overflow: ellipsis;
+  /*para cuando el texto desborda de la caja. Tengo dos opciones clip: lo corta;
+    y ellipsis pone punto suspensivos donde desborda.
+    Para usarlo tengo que tener esto:
+        overflow: hidden;
+        white-space: no wrap;
+    */
+  overflow: hidden;
+  white-space: nowrap;/*corta todos los saltos de linea y deja todo en una unica linea*/
+}
+
+.text{
+  background-color: blanchedalmond;
+  border: thin solid black;
+  padding: 1rem;
+  width: 50%;
+  font-size: 2rem;
+  text-align: center;
+  text-decoration: underline;
+  text-indent: 1rem;
+  text-transform: capitalize;
+  letter-spacing: 0.5rem;
+}
+
+.white-space {
+  white-space: pre;
+}
+
+.word-spacing {
+  font-size: 2rem;
+  word-spacing: 1rem;
+}

@@ -1,0 +1,120 @@
+.box {
+  width: 300px;
+  height: 300px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  border: thick dashed red;
+}
+
+/*
+FONDOS EN CSS
+  Las distintas propiedades para fondos en css son:
+    background-color: define el color de fondo del elemento.
+    background-image: pone una imagen como fondo del elemento.
+    background-repeat: define como se repite la imagen de fondo en el elemento. Por defecto en repeat      
+    background-size: 
+      define el tamaño de la imagen de fondo, primero el valor en x, despues el valor en y.
+      cover: cambia el tamaño de la imagen de fondo para asegurarse de cubrir el contenedor.
+      contain: cambia el tamaño de la imagen de fondo para asegurarse que se la muestre completamente. Si es mas chica que el contenedor van a quedar partes vacias o se repite por el repeat.
+    background-position:
+      define la posicion de la imagen de fondo, primer valor en x. Segundo valor en y. Si no se pone segundo valor es center.
+      tambien se puede poner las palabras center,top,bottom,left and right.
+    background-clip: define cuanto debe extenderse el fondo dentro del elemento. El defecto es border box. De donde empieza el color de fondo.
+    background-origin: define el origen de la imagen de fondo. Donde empieza la imagen de fondo. Por defecto es padding box.
+    background-attachment: define como se comportara la imagen de fondo al desplazarse por la pagina.
+*/
+
+.bg-color{
+  background-color: brown;
+}
+
+.bg-image{
+  background-image: url("../assets/puesta-sol.jpg");
+}
+
+.bg-size {
+  background-image: url("../assets/puesta-sol.jpg");
+  background-size: 300px 200px;
+  background-size: 300px; /*Un solo valor es el ancho y la altura queda en auto*/
+  background-size: cover;
+  background-size: contain;
+}
+
+.bg-repeat {
+  background-image: url("../assets/puesta-sol.jpg");
+  background-size: 100px;
+  background-repeat: repeat; /* repite en x y en y. El defecto*/
+  background-repeat: repeat-x; /* solo en x*/
+  background-repeat: repeat-y; /* solo en y*/
+  background-repeat: no-repeat;/* no repite*/
+}
+
+.bg-position {
+  background-color: skyblue;
+  background-image: url("../assets/puesta-sol.jpg");
+  background-size: 100px;
+  background-repeat: no-repeat;
+  background-position: 10px 20px;
+  background-position: 30px;
+  background-position: top center;
+  background-position: top right;
+  background-position: top left;
+  background-position: center;
+  background-position: bottom left;
+  background-position: bottom right;
+  background-position: bottom;
+}
+
+.bg-clip {
+  background-color: skyblue;
+  background-image: url("../assets/puesta-sol.jpg");
+  background-size: 200px;
+  padding: 1rem;
+  background-repeat: no-repeat;
+  background-clip: padding-box;
+  background-clip: content-box;
+}
+
+.bg-origin {
+  background-color: skyblue;
+  background-image: url("../assets/puesta-sol.jpg");
+  background-size: 200px;
+  padding: 1rem;
+  background-repeat: no-repeat;
+  background-origin: padding-box;
+  background-origin: border-box;
+  background-origin: content-box;  
+}
+
+.bg-attachment {
+  background-color: skyblue;
+  background-image: url("../assets/puesta-sol.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 50vh;
+  background-attachment: scroll; /*default*/
+  background-attachment: fixed; /*Se ve como si estuviera viendo por una ventana esta re lindo el efecto es el mismo que puse en la pagina de taubrix. EFECTO PARALAX*/
+}
+
+/*Puedo poner multiples imagenes poniendo con comas mas imagenes mientras mas a la derecha las defina mas al fondo van a mostrarse
+  las propiedades tambien van por coma dependiendo a cual imagen quiero aplicar*/
+.bg-multiple{
+  background-image: url("../assets/favicon.png"), url("../assets/puesta-sol.jpg"); /*Mas a la derecha salen mas al fondo*/
+  width: 50%;
+  height: 30vh;
+  background-repeat: repeat-x, no-repeat;
+  background-size: 10%, cover;
+}
+
+.bg-art{
+  width: 1000px;
+  height: 700px;
+  /* background-image: url("../assets/arbol.png"), url("../assets/aves.png"), url("../assets/cielo.png"); */
+  background: url("../assets/arbol.png") no-repeat center bottom, 
+              url("../assets/aves.png") no-repeat center bottom fixed,  
+              url("../assets/cielo.png") no-repeat center top;
+
+}

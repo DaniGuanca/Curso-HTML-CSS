@@ -1,0 +1,358 @@
+/*
+CONTENEDORES FLEXIBLES
+  Todos los CONTENEDORES Y CAJAS de nuestra interfaz tienen que ser flexibles y responsivos.
+  Los elementos flexibles se le definen la anchura y altura con medidas RELATIVAS, no con absolutas.
+*/
+
+[class^="box"] {
+  /*Todos los selectores cuya clase empiece con la palabra box*/
+  margin: 3rem auto;
+  background-color: orangered;
+}
+
+.box {
+  width: 300px;
+  height: 300px;
+}
+
+.box-flexible {
+  width: 50%;
+  height: 20vh; /*Se le puede poner porcentajes pero para que la altura en porcentajes funcione el padre tiene que tener una altura bien definida en pixeles o medida absoluta. Entonces como muchas veces no tienen altura definida conviene usar la altura del VIEWPORT. IMPORTANTE*/
+}
+
+/*
+PROPIEDADES MAX-WIDTH MIN-WIDTH Y MAX-HEIGHT Y MIN-HEIGHT
+  En vez de definir ancho y altura maxima puedo definir puntos maximos y minimos, aca si se pueden usar unidades absolutas.
+*/
+.box-flexible-2 {
+  max-width: 960px;
+  min-width: 280px;
+
+  max-height: 480px;
+  min-height: 280px;
+}
+
+.box-flexible-3 {
+  max-width: 960px;
+  min-width: 280px;
+
+  max-height: 480px;
+  min-height: 280px;
+
+  width: 300px;
+  height: 300px;
+}
+
+.box-flexible-4 {
+  max-width: 960px;
+  min-width: 280px;
+
+  max-height: 480px;
+  min-height: 280px;
+
+  width: 50%;
+  height: 20vh;
+}
+
+/*
+IMPORTANTE! 
+  SI DEFINIMOS MAXIMOS Y MINIMOS Y APARTE USAMOS TAMBIEN WIDTH Y HEIGHT CON PIXELES EL ESTILO SE ROMPE PORQUE WIDHT Y HEIGHT TIENEN MAS JERARQUIA QUE MIN Y MAX. 
+  EN CAMBIO CUANDO USAMOS MAX Y MIN JUNTO CON MIN Y HEIGHT PERO CON UNIDADES RELATIVAS COMO % Y VH ENTONCES ACA SI NO SE ROMPE Y FUNCIONA BIEN
+*/
+
+/*
+------------------------------------------------------------------------------------------------------------------------------------------------
+MULTIMEDIA FLEXIBLE (Todo lo que no es texto)
+  Es como ya veniamos haciendo. Anchura 100% altura auto
+
+    img, audio, video, iframe, canvas, svg, picture {
+      max-width:100%;
+      height: auto;
+    }
+*/
+
+img,
+video,
+iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/*
+------------------------------------------------------------------------------------------------------------------------------------------------
+VIDEOS RESPONSIVOS
+*/
+.responsive-media {
+  position: relative;
+  max-width: 100%;
+  height: 0;
+  /*
+    Formato widescreen, le damos ese padding bottom para simular altura para el formato widescreen ya que los porcentajes en altura no sirven si el padre no tiene altura bien definida y porque es dificil calcular el 56.25% en vh.
+
+    Widescreen 16:9
+      16 ----> 100%
+      9  ----> 56.25%
+  */
+  padding-bottom: 56.25%;
+}
+
+.responsive-media > * {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/*TECNICA NUEVA*/
+.aspect-ratio-16-9 {
+  background-color: rebeccapurple;
+  aspect-ratio: 16 / 9;
+}
+
+/*
+------------------------------------------------------------------------------------------------------------------------------------------------
+MEDIA QUERIES
+La teoria la mayoria de la teoria esta en el index.html. Basicamente son preguntas que se hacen al navegador, si esta en modo horizontal osea la orientacion, el tipo de pantalla, el modo dark light pero la que mas uso es preguntar la max y la min anchura para el responsive.
+
+    @media screen and (max-width:480px) and (orientation:portrait) {
+       Código CSS que se aplicará cuando se cumpla la media queries
+    }
+
+LA NUEVA FORMA 3.0 COMO YA SE HACERLA
+Voy a hacer estilos para cuando mande a imprimir
+*/
+@media print {
+  @page {
+    size: A5 landscape;
+  }
+
+  body {
+    font-size: 10pt; /*Ahora usamos puntos como tamaño de letra*/
+    font-family: sans-serif;
+    background-color: #000;
+    color: greenyellow;
+  }
+}
+
+/*Media query para quitar animaciones si es que el usuario lo pone en sus configuraciones*/
+@media screen and (prefers-reduce-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/*Cuando la pantalla sea modo dark o light. TOMA LA CONFIGURACION DEL SISTEMA OPERATIVO*/
+/* @media screen and (prefers-color-scheme: dark) {
+  html {
+    background-color: black;
+    color: teal;
+  }
+}
+
+@media screen and (prefers-color-scheme: light) {
+  html {
+    background-color: white;
+    color: darkblue;
+  }
+} */
+
+/*Las que ya se*/
+/*MIN WIDTH ES MAS PARA MOBILE FIRST*/
+@media screen and (min-width: 480px) {
+  html {
+    background-color: white;
+  }
+}
+
+/*MIN WIDTH ES MAS PARA DESKTOP FIRST*/
+@media screen and (max-width: 480px) {
+  html {
+    background-color: lightgreen;
+  }
+}
+
+/*
+------------------------------------------------------------------------------------------------------------------------------------------------
+FEATURE QUERIES
+  Las Feature Queries son reglas CSS que le preguntan al navegador si soportan o no, una determinada propiedad o valor. Sirve mucho para cuando nuevas tecnologias, con las Feature queries puedo preguntar si el navegador la soporta y en caso que si pues las uso.
+
+  @supports (display: grid) {
+    Código CSS que se aplicará cuando se cumpla la feature queries
+  }
+*/
+
+/*Google Chrome al 24/5/2022 no tiene soporte para subgrid, pero firefox si entonces en firefox se aplican los estilos estos*/
+@supports (grid-template-columns: subgrid) {
+  html {
+    background-color: black;
+    color: greenyellow;
+  }
+}
+
+/*Si quiero condicionar que NO lo soporte simplente uso la palabra not*/
+@supports not (grid-template-columns: subgrid) {
+  html {
+    background-color: darkolivegreen;
+    color: white;
+  }
+}
+
+@supports (display: grid) and (grid-template-columns: subgrid) {
+  html {
+    background-color: darkslateblue;
+    color: darkseagreen;
+  }
+}
+
+@supports (display: grid) or (grid-template-columns: subgrid) {
+  html {
+    background-color: white;
+    color: black;
+  }
+}
+
+/*
+------------------------------------------------------------------------------------------------------------------------------------------------
+CONTAINER QUERIES
+  Los Container Queries nos permiten hacer componentes responsivos de interfaz de usuario, que no dependan del tamaño de la pantalla y las media queries para cambiar o adaptar el diseño de su contenido. Sino que dependan de sus propias necesidades de visualización.
+  Por ejemplo una tarjeta que tenga una imagen que se va a ver en vertical y si su contenido como una imagen es de mas de 400px entonces la tarjeta por container queries pasaria a verse en modo horizontal.
+  El ejemplo esta en index.html
+  A LA FECHA DEL 24/5/2022 TODAVIA NO ESTA SOPORTADO POR LOS NAVEGADORES ESTA SOLO EN EXPERIMENTAL Y HAY QUE HABILITARLO DESDE EL NAVEGADOR. EN EDGE NO SIRVE ABRIRLO EN CHROME.
+
+    .card {
+      contain: layout inline-size-style;
+    }
+
+    @container (min-width: 600px) {
+      .card-container {
+        display: flex;
+      }
+    }
+*/
+.card {
+  border: thin solid #000;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+
+  /*Activa container query*/
+  contain: layout inline-size style;
+}
+
+.card-image {
+  max-width: 100%;
+  height: auto;
+
+  object-fit: cover;
+  object-position: 0 50%;
+}
+
+.card-content {
+  padding: 1rem;
+}
+
+/* chrome://flags activar la funcion experimental */
+@container (min-width: 600px) {
+  .card-container {
+    display: flex;
+  }
+
+  .card-container > * {
+    width: 50%;
+    flex-basis: 50%;
+  }
+}
+
+/*
+------------------------------------------------------------------------------------------------------------------------------------------------
+FLUID DESIGN
+
+  GRID FLUIDA: Se hace con grid CSS
+
+*/
+
+.fluid-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(200px, 1fr)
+  ); /*Repeat recibe cuantas veces se va a repetir el patron de columnas y la unidad de medida.
+      auto-fit dependendiendo del numero de items es el numero a repetir
+      minmax() da un valor maximo y minimo*/
+}
+
+/*
+-----------------------------------------------
+  TEXTO FLUIDO: Para esto Mudford el creador de fluid design deja en utopia el css para los tamaños de los textos. El link lo tengo en el index voy al enlace fluid type calculator en el css generator elijo la opcion de usar la funcion clamp() esto me simplifica mucho el css y copio y pego todo ese codigo donde lo quiera usar. Son variables que le puedo aplicar a mis propiedades.  
+ */
+
+/*Codigo de la pagina calculadora*/
+/* @link https://utopia.fyi/type/calculator?c=320,21,1.2,1140,24,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l */
+
+:root {
+  --step--2: clamp(0.91rem, calc(0.89rem + 0.1vw), 0.96rem);
+  --step--1: clamp(1.09rem, calc(1.05rem + 0.21vw), 1.2rem);
+  --step-0: clamp(1.31rem, calc(1.24rem + 0.37vw), 1.5rem);
+  --step-1: clamp(1.58rem, calc(1.46rem + 0.59vw), 1.88rem);
+  --step-2: clamp(1.89rem, calc(1.71rem + 0.89vw), 2.34rem);
+  --step-3: clamp(2.27rem, calc(2.01rem + 1.29vw), 2.93rem);
+  --step-4: clamp(2.72rem, calc(2.36rem + 1.83vw), 3.66rem);
+  --step-5: clamp(3.27rem, calc(2.75rem + 2.56vw), 4.58rem);
+}
+
+/*Genero las clases para usar estas variables*/
+.step--2 {
+  font-size: var(--step--2);
+}
+
+.step--1 {
+  font-size: var(--step--1);
+}
+
+.step-0 {
+  font-size: var(--step-0);
+}
+
+.step-1 {
+  font-size: var(--step-1);
+}
+
+.step-2 {
+  font-size: var(--step-2);
+}
+
+.step-3 {
+  font-size: var(--step-3);
+}
+
+.step-4 {
+  font-size: var(--step-4);
+}
+
+.step-5 {
+  font-size: var(--step-5);
+}
+
+/*
+2° FORMA
+  Si no quiero hacer tantas clases hay un hack de ethan marcot para hacer textos fluidos
+*/
+
+body {
+  /*
+    14 = tamaño de letra mas pequeño que quiero.
+    18 = tamaño de letra mas grande que quiero.
+    300 = tamaño de viewport mas pequeño.
+    1400 = tamaño de viewport mas grande.
+  */
+  /* font-size: calc(14px + (18-14) * ((100vw - 300px) / (1400-300))); */
+}
+
+/*
+-----------------------------------------------
+  CONTENEDOR FLUIDO: Ideal para cards y cualquier contenedor para que fluya sin necesidadde media queries. Usamos clamp para esto que recibe calor minimo valor ideal y valor maximo.
+*/
+
+.box-fluid {
+  width: clamp(400px, 60vw, 600px);
+  height: clamp(200px, 30vh, 300px);
+}

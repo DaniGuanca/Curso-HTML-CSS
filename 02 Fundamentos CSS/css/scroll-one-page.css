@@ -1,0 +1,67 @@
+/*RESETEO*/
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: sans-serif;
+
+  scroll-behavior: smooth;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+/*FIN RESETEO*/
+
+/*Para este ejercicio le voy a quitar los margenes al body y a los h1 h2. Para que no queden espacios en blanco*/
+body,
+h1,
+h2 {
+  margin: 0;
+}
+
+img {
+  max-width: 50%;
+  height: auto;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  padding: 0.25rem;
+  text-align: center;
+  background-color: #000;
+  color: #fff;
+}
+
+.header a {
+  margin: 0 1rem;
+  color: #00c4d6;
+}
+
+.header a:hover {
+  color: #e94bb4;
+}
+
+/*A cada seccion slide voy a hacer que ocupe toda la pantalla*/
+.slide {
+  width: 100%;
+  min-height: 100vh;
+
+  color: #d9e8f0;
+  background-color: #1e2345;
+  padding: 2rem;
+}
+
+.slide:nth-child(even) {
+  background-color: #108eb4;
+}
+
+/*Como tengo un menu con position sticky y cada seccion ocupa toda la pantalla se da el caso de que cuando damos a un enlace del menu no lleva a la seccion pero una parte la tapa el menu. Para solventar eso se puede poner un padding top a las secciones pero hay una solucion mucho mejor.
+Cuando tenemos ENLACES INTERNOS (como por id #) la mejor solucion es usar SCROLL-MARGIN-TOP esto nos va a dar un margen arriba cuando haga el scroll entonces asi no el menu no va a tapar las secciones cuando llegamos a ellas por el enlace.*/
+
+/*A todos los elementos que tengan id*/
+[id] {
+  scroll-margin-top: 7.8ex; /*Acá le aplica la unidad de medida ex porque esa generalmente se usa para altura, igual se puede usar rem o pixeles. 1 ex es aproximadamente 0.5rem*/
+}

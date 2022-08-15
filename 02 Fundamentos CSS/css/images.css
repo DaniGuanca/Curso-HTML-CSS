@@ -1,0 +1,44 @@
+/*PARA HACERLAS RESPONSIVAS*/
+img{
+  max-width: 100%;
+  height: auto;
+}
+
+/*TARJETAS*/
+.card{
+  border: medium solid black;
+  width: 400px;
+  height: 400px;
+}
+
+.card img {
+  background-color: blanchedalmond;
+  height: 300px;
+  object-fit: fill;
+  /* default */
+  object-fit: cover;
+  object-fit: none;
+  object-fit: contain;
+  object-fit: scale-down;
+  /* toma el valor que sea menor de los valores contain y none */
+  object-position: left top;
+  object-position: right bottom;
+  object-position: -50px center;
+  object-position: 50% 50%;
+}
+
+.card img{
+  height: 300px; /*Supongo que quiero que la imagen ocupe solo 300px de la tarjeta. ESTO LA VA A DEFORMAR*/
+  
+  /*Para poder arreglar este problema tenemos OBJECT FIT y OBJECT POSITION*/
+  
+  /*OBJECT FIT es como background size, por defecto es fill (que rellena y deforma) las otras dos son: 
+    cover: cambia el tamaño de la imagen de fondo para asegurarse de cubrir el contenedor. 
+    contain: cambia el tamaño de la imagen de fondo para asegurarse que se la muestre completamente. Si es mas chica que el contenedor van a quedar partes vacias o se repite por el repeat.*/
+  object-fit: cover;
+
+  /*OBJECT POSITION es como background position. Define la posicion de la imagen de fondo, primer valor en x. Segundo valor en y. Si no se pone segundo valor es center. Tambien se puede poner las palabras center,top,bottom,left and right.*/
+  object-position: top left;
+
+  /*Al poner object-fit en cover hago que la imagen cubra el contenedor y no se deforme. Como la imagen puede ser mas grande que el contenedor entonces se van a cortar partes. Y por eso pongo object-position top left para ponerla arriba a la izquierda del contenedor asi se vea la mayor parte de la imagen y solo corte algunos bordes. Con eso queda linda sin deformar y responsiva*/
+}

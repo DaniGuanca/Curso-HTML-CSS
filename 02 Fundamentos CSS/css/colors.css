@@ -1,0 +1,83 @@
+.color-by-name{
+  background-color: coral;
+  color: rebeccapurple;
+  border: thick solid greenyellow;
+}
+
+/*
+SISTEMA HEXADECIMAL
+0123456789ABCDEF
+
+RGB(Medios digitales) vs CMYK(Medios impresos) [CyanMagentaYellowKey]
+
+Colores en Hexadecimal van a ser colores de 6 digitos 
+#FF(Canal Rojo) 66(Canal verde) 00(Canal azul)
+*/
+
+.color-hex{
+  background-color: #ff6600;  /*esto se puede simplificar a -> #f60 porque los valores por canal son iguales (3 parejas sino no se puede)*/
+  background-color: #ff6605; /*este no se puede simplificar porque la tercer pareja no tiene valores iguales*/
+  color: #12ac78;
+  border: thick solid #000;
+  /*
+  Y PUEDO AGREGARLE DOS VALORES MAS PARA LA OPACIDAD ->#FF(Canal Rojo) 66(Canal verde) 00(Canal azul) 50(Opacidad del 50%)
+  */
+  background-color: #00000050;
+}
+
+/*
+Sistema RGB
+  0-255
+  (Rojo, Verde, Azul)
+  rgb(255,255,255)
+
+  Para tener opacidad uso rgba(255,255,255, 0.5) Es blanco al 50% de opacidad
+*/
+.color-rgb{
+  background-color: rgb(255, 255, 255);
+  color: rgb(102, 51, 153);
+  border: thick solid rgb(173, 255, 47);
+}
+
+/*
+Sistema HSL
+  HueSaturationLightness (Tono-Saturacion-Luminosidad)
+
+  El primer es Hue(Circulo Cromatico)
+    0° -> red
+    60° -> yellow
+    120° -> green
+    180° -> cyan
+    240° -> blue
+    300° -> magenta
+
+  hsl(16, 100%, 66%)
+
+  Primer valor es el tono, el segundo es la saturacion (intensidad del color [0% -> 100%]) y el tercero de la luminosidad o lightness (luminosidad hacia negro o hacia blanco [0% -> 100%])
+  50% ->color puro
+
+  Para agregar opacidad es con hsla y el cuarto parametro de 0 a 1 es la opacidad como en rgb
+*/
+.color-hsl {
+  background-color: hsl(0, 100%, 50%);
+  color: #663399;
+  border: thick solid #adff2f;
+}
+
+/*
+Valor transparent: color transparente es igual a aplicar rgba(0,0,0,0)
+Valor currentColor: hereda el valor por defecto o asignado de la propiedad color, del ancestro que tenga definida esta propiedad, busca del ancestro mas cercano al mas lejano.
+*/
+.color-transparent-current{
+  background-color: darkmagenta;  
+  background-color: currentColor;
+  background-color: transparent;
+  border: thick solid currentColor;
+}
+
+.opacity{
+  background-color: orchid;
+  color: navy;
+  border: thick solid black;
+  opacity: .75;
+}

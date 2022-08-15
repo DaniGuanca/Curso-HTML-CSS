@@ -1,0 +1,71 @@
+.list{
+  /*list-style-type es para cambiar el tipo puedo poner cuadrados en vez de circulos de la lista etc
+  Aunque la lista sea desordenada se le puede poner estlilos de listas ordenadas y lo toma bien*/
+  list-style-type: disc;
+  list-style-type: circle;
+  list-style-type: decimal-leading-zero;
+  list-style-type: square;
+
+  /*list-stlyle-image es para poner una imagen como bullet*/
+  /* list-style-image: url(); */
+}
+
+
+/*Como el list-style-image si le pongo una imagen grande va a quedar feo en la lista, jon da esta clase de abajo para poder poner una imagen como bullet sin que se vea feo*/
+.list li{
+  list-style-type: none;
+}
+
+.list li::before{
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background-image: url("../assets/favicon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+
+
+.list-2 li {
+  background-color: coral;
+  list-style-position: outside; /*por defecto*/
+  list-style-position: inside; /*el bullet forma parte del texto no conviene usar esto sale feo*/
+}
+
+
+
+.list-3 {
+  background-color: cornsilk;
+  list-style: lower-latin inside; /*list-style es un shorthand para list-style-type, list-style-image y list-style-poisition*/
+}
+
+
+/*Si tengo ganas de mostrar las listas en forma horizontal por columnas uso las propiedas:
+    column-count: la cantidad de columnas en la que voy a poner los elementos de la lisa.
+    column-gap: el espacio entre las columnas.
+  */
+
+.text-column-4{
+  column-count: 4;
+  column-gap: 2rem;
+  column-rule: medium solid black; /*linea pegada en la columna*/
+  column-width: 100px; /*tamaño minimo que va a medir una columna en ancho*/
+
+  list-style-position: inside; /*para que no le pegue la linea justo en la columna*/
+}
+
+/*tambien funcionan para otros elementos como parrafos*/
+.text-column-3{
+  column-count: 3;
+  column-gap: 2rem;
+  column-rule: medium solid black;
+  /*linea pegada en la columna*/
+  column-width: 100px;
+  /*tamaño minimo que va a medir una columna en ancho*/
+  
+  list-style-position: inside;
+  /*para que no le pegue la linea justo en la columna*/
+}

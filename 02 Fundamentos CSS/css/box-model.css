@@ -1,0 +1,241 @@
+/*
+Modelo de Caja
+  Es la forma en que CSS ve a los elementos html, como si fueran cajas con las siguientes propiedades:
+    1. El contenido (Content) El contenido (texto) del elemento html considerando sus dimensiones (width & height).
+    2. Borde (Border): Lo que delimita cada uno de los elementos html.
+    3. Relleno (Padding): Son las distancias internas (La distancia del borde al contenido).
+    4. Margen (Margin): Son las distancias externas (La distancia entre el elemento html y sus elementos  hermanos o padres, todo lo que hay afuera de la caja)
+
+  Dentro de la caja hay que considerar que una caja tendra 4 lados (se lee en sentido horario):
+    1.Arriba (top).
+    2.Derecha (right).
+    3.Abajo (bottom).
+    4.Izquierda (left).
+*/
+
+body{
+  margin: 0;
+}
+
+h1{
+  /*content*/
+  width: 400px;
+  height: 200px;
+
+  /*border*/
+  border-color: green;  
+  border-width: thick; /*thin es 1px, medium 3px y thick 5px*/ /*border-width: arri y abajo | izq y der */
+  border-style: solid;
+  border:2px dashed blue; /*border-width | border-style | border-color*/
+}
+
+/*padding y margin*/
+.caja-uno,
+.caja-dos{
+  background-color: chocolate;
+  border: medium solid orange;
+  /*padding*/
+  padding: 20px;
+
+  /*margin*/
+  margin: 20px;
+
+  /*
+  Esto aplica para margin y padding
+   1 valor = aplica a los 4 lados.
+
+   2 valores = primer valor lados verticales (Arriba y abajo) segundo valor para los lados (derecha e izquierda)
+
+   3 valores = el primero es para top, el segundo para left y right y el tercero es para bottom. (rombo)
+
+   4 valores = arriba derecha abajo izquierda (sentido horario).
+  */
+  padding: 20px 40px;
+  margin: 40px 20px;
+  padding: 0 40px 20px;
+  margin: 50px 30px 0;
+  padding: 0 40px 20px 50px;
+  margin: 100px 50px 30px 0;
+}
+
+/*
+Caja de Linea:
+  -Ocupan el espacio necesario para mostrar su contenido
+  -No tienen dimensiones modificables(alto,ancho) IMPORTANTE, NO PASA NADA CUANDO MODIFICO WIDTH Y HEIGHT
+  -Permiten otro elementos a su lado
+  -Padding y margin solo empujan a elementos adyacentes en horizontal, NUNCA EN VERTICAL, NO VA A HACER NADA ARRIBA Y ABAJO SOLO LO VA A TAPAR
+
+Caka de Bloque:
+  -Ocupan todo el ancho disponible
+  -Tienen dimensiones modificables (ancho y alto)
+  -No permiten otros elementos a su lado (aunque especifique un ancho, sigue ocupando todo el ancho disponible)
+*/
+
+.caja-linea,
+.caja-bloque{
+  background-color: darkcyan;
+  width: 500px;
+  height: 250px;
+  color: white;
+  border: medium solid black;
+  padding: 16px;
+}
+
+.caja-bloque{
+  margin: 32px;
+}
+
+.caja-linea{
+  margin: 48px;
+}
+
+/*
+  Propiedad Display
+    inline
+    block
+    inline-block - Se comporta como un elemento de linea pero acepta modificar sus dimensiones (ancho y alto)
+    none
+    table
+    list-item
+    flex
+    grid
+*/
+
+.caja-none,
+.caja-linea-bloque,
+.caja-hidden{
+  background-color: darkolivegreen;
+  color: white;
+  width: 600px;
+  height: 300px;
+  border: medium solid black;
+}
+
+.caja-linea-bloque{
+  display: inline-block;
+}
+
+.caja-none{
+  display: none;
+}
+
+.caja-hidden{
+  visibility: hidden;
+}
+
+.overflow{
+  background-color: darkturquoise;
+  width: 200px;
+  height: 100px;
+
+  /*Tambien tengo overflow-x y overflow-y si quiero tratarlos por separado*/
+  /* overflow: hidden; Oculta todo lo que desborda */
+  /* overflow: scroll; Agrega las dos barras de desplazamiento cuando el contenido se desborda */
+  /* overflow: auto; Agrega la barra horizontal y/o vertical dependiendo de que lado se desborda el contenido */
+  overflow: auto;
+}
+
+
+/*
+TAMAÑO DE LA CAJA 
+Hay dos opciones content-box que es la por defecto y content-box. Cuando usamos content box el ancho y el alto que definamos es el del contenido entonces si ponemos que el contenido osea el content tenga un ancho de 200 x 400 px pero agregamos padding o borde estos dos se van a sumar al ancho y alto entonces se va a hacer mas grando. Ejemplo al content le agrego paddingo de 10px a los 4 lados y borde de 5px a los 4 lados. Entonces el tamaño total que ocupa la caja va a crecer a 230(200+10+10+5+5)px x 430(400+10+10+5+5)px. 
+En cambio BORDER BOX el ancho y el alto de la caja incluye el borde y padding. Por lo que si hago un elemento de ancho y alto de 200 x 400px y el box sizing en border box la caja siempre va a medir 200 x 400px. Si agrego borde y padding estos se agregan por adentro entonces el content se hace mas chico pero siempre la caja va a medir 200 x 400 no se va a agrandar. ESTE ES EL MODO QUE SIEMPRE USO Y MIRCHA TAMBIEN CUANDO HAGO EL RESETO. BOOTSTRAP TAMBIEN USA BORDER-BOX. ES MEJOR USAR BORDERBOX PARA QUE NO SE AGRANDE LA CAJA CUANDO META BORDE Y PADDING.
+*/
+
+/*box sizing en content box es por defecto, considera desde el contenido*/
+.box-sizing-content{
+  background-color: deepskyblue;
+  width: 500px;
+  height: 250px;
+  padding: 10px;
+  border: thick solid black;
+}
+
+/*border box: el tamaño de la caja lo considera desde el borde*/
+.box-sizing-border{
+  background-color: deepskyblue;
+  width: 500px;
+  height: 250px;
+  padding: 10px;
+  border: thick solid black;
+  box-sizing: border-box;
+}
+
+.container-col-3{
+  background-color: burlywood;
+  width: 600px;
+  height: 300px;
+  margin-top: 20px;
+}
+
+.container-col-3 > *{
+  width: 200px;
+  border: thin solid red;
+  float: left;
+  box-sizing: border-box;
+}
+
+/*reseto de caja de paul irish*/
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+/*---------------------------*/
+
+/*Floats*/
+.container-floats{
+  background-color: cornflowerblue;
+}
+
+.float-left{
+  float: left;
+}
+
+.float-right{
+  float: right;
+}
+
+.clear-fix{
+  clear: both;
+}
+
+
+/*Colapso de margenes verticales
+COLAPSO DE MARGENES VERTICALES IMPORTANTE ! ! ! 
+Los margenes verticales de las cajas,
+osea los margin top y margin bottom no se suman entre si SE COLAPSAN entonces si tengo un objeto con margin bottom 16px y otro objeto abajo con margin top 16px NO SE SUMAN el espacio vertical entre ellos no va a ser 32px va a ser 16 PX PORQUE SE COLAPSAN. SOLO LOS VERTICALES
+*/
+.margin-colapse{
+  background-color: skyblue;
+}
+
+.margin-colapse section {
+  border: thin solid black;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.margin-colapse span{
+  border: thin solid black;
+  display: inline-block;
+  margin-right: 16px;
+  margin-left: 16px;
+}
+
+/*Centrado de cajas
+  PARA CENTRAR COSAS HAY QUE CENTRAR SU CAJA para eso es como ya lo sabia con margin left y margin right auto.
+*/
+.sitio-web{
+  border: thin solid black;
+  background-color: thistle;
+  width: 800px;
+  height: 1000px;
+  padding: 16px;
+  margin-left: auto;
+  margin-right: auto;
+}

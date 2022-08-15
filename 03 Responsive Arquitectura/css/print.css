@@ -1,0 +1,11 @@
+/*Tamaño de la pagina de impresion*/
+@page {
+  size: A4;
+}
+
+body {
+  font-size: 12pt; /*Ahora usamos puntos como tamaño de letra*/
+  font-family: serif;
+  background-color: #000;
+  color: #fff;
+}

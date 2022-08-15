@@ -1,0 +1,88 @@
+
+/*Si quiero declarar variables globales puedo usar la pseudoclase :ROOT. :root es el html pero con la diferencia que tiene mas peso que la etiqueta html.
+      :root{
+        --variable: 2px;
+      }
+    Todas las variables en root van a estar disponible globalmente.
+*/
+:root{
+  color: darkgreen;
+  --default-bg-color: skyblue;
+}
+
+html{
+  color: red;
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+.custom-props-1{
+  --primary-color: gray;
+  --font-size: 32px;
+
+  background-color: var(--primary-color);
+}
+
+/*Tambien puedo definir variables en la etiqueta html con el style, --border-color esta en la etiqueta en variables-functions.html*/
+.custom-props-2{
+  background-color: var(--default-bg-color);
+  border: thin solid var(--border-color);
+}
+
+.custom-props-3{
+  font-size: var(--font-size);
+}
+
+/*Esto no va a funcionar porque las variables tienen como ambito el contenedor donde se declararon y sus hijos. No afuera
+ La funcion var puede recibir un segundo valor, en caso de que no encuentre la variable aplica el segundo valor.
+      var(variable, valor-por-defecto)
+
+*/
+.title-props{
+  color: var(--primary-color, navy);
+  background-color: var(--default-bg-color);
+}
+
+/*
+FUNCION CALC()
+    Es para hacer calculos arimeticos. Meto los valores entre parentesis con los operadores como si fuera una calculadora y devuelve el resultado.
+    IMPORTANTE: HAY QUE DEJAR UN ESPACIO ENTRE EL OPERADOR Y EL OPERANDO (SIGNO Y NUMERO) SINO NO FUNCIONA
+*/
+.ch-10{
+  --num-ch: 10ch;
+  --padding-size: 2ch;
+
+  background-color: var(--default-bg-color);
+  font-size: 2rem;
+  width: 10ch;
+  padding: var(--padding-size);
+
+  width: calc(var(--num-ch) + var(--padding-size) * 2);
+}
+
+
+/*
+FUNCION MIN() Y MAX()
+  Min(v1, v2...) devuelve el minimo de los valores que pasemos.
+  Max(v1, v2...) devuelve el maximo de los valores que pasemos.
+*/
+.min-max{
+  background-color: var(--default-bg-color);
+  margin-top: 1rem;
+  width: min(300px, 20vw);
+  height: max(200px, 25vh);
+}
+
+/*
+FUNCION CLAMP()
+  Recibe 3 valores, el tamaño minimo, tamaño IDEAL y tamaño maximo. Tambien permite hacer calculos
+  Va a servir mucho en responsive.
+*/
+h1{
+  font-size: clamp(2rem, 1rem + 3vw, 3rem);
+}

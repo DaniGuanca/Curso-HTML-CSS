@@ -1,0 +1,132 @@
+/*RESETEO*/
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: sans-serif;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+/*FIN RESETEO*/
+
+/*Sacamos el margen del body*/
+body {
+  margin: 0;
+}
+
+/*CONTENEDOR*/
+.slides {
+  width: 100%;
+
+  height: 100vh; /*Es muy importante que el contenedor de las slides ocupe todo el viewport, asi las slides ocupan toda la pantalla*/
+  overflow-y: scroll; /*Para las slides en vertical*/
+  /*IMPORTANTE
+      Si o si tenemos que poner el overflow en scroll y definir la altura para el contenedor (Height) sino el efecto NO FUNCIONA
+  */
+
+  /*
+  Scroll snap type se aplica al contenedor y recibe dos valores, el primero es el eje que vamos a controlar que puede ser (x , y , inline , block o both). El segundo parametro es el modo y tenemos mandatory (mas brusco, apenas muevo el scroll pasa. IDEAL PARA SLIDES), proximity (mas suave, tiene que estar mas proximo a la siguiente slide para saltar).
+      scroll-snap-type: [x | y | inline | block | both] [mandatory | proximity]
+  */
+  scroll-snap-type: none; /*defecto*/
+  scroll-snap-type: block mandatory;
+}
+
+.slide {
+  width: 100%;
+  height: inherit;
+  background-color: #1e2345;
+
+  /*LOS HIJOS DEBEN TENER OSEA CADA SLIDE TIENEN QUE TENER LA PROPIEDAD SCROLL-SNAP-ALIGN
+    Esta propiedad nos da hacia donde se van a alinear.*/
+  scroll-snap-align: none;
+  scroll-snap-align: start;
+  scroll-snap-align: end;
+  scroll-snap-align: center;
+}
+
+.slide:nth-child(even) {
+  background-color: #108eb4;
+}
+
+/*CONTENEDOR DE LA SLIDE*/
+.slide-container {
+  width: 100%;
+  width: 80%; /*Para que el contenido de la slide no ocupe toda la pantalla, porque si pones texto queda mas lindo centrado y con unos espacios*/
+  height: inherit; /*Porque tiene que tener la altura del contenedor*/
+  margin: 0 auto;
+
+  /*Ahora va a aplicar flexbox para tener todo centrado tambien verticalmente*/
+  display: flex;
+  flex-direction: column; /*De arriba a abajo*/
+  justify-content: center; /*centrado horizontal*/
+  align-items: center; /*centrado vertical*/
+  /*fin flexbox*/
+
+  font-size: 3vw;
+  color: #d9e8f0;
+}
+
+/*EJERCICIO CARROUSEL
+    Es parecido al anterior pero con eje x, ver explicacion del anterior si no entiendo algo acá*/
+
+/*CONTENEDOR QUE VA A ENMASCARAR O ESCONDER LAS SLIDES*/
+.carrousel {
+  border: thick solid #d938f0;
+  width: 50%;
+  height: 50vh;
+
+  display: flex; /*Para que los hijos tomen la altura de la caja contenedora*/
+}
+
+.carrousel-container {
+  width: 100%;
+  overflow: scroll hidden; /*en x scroll hidden en y*/
+
+  scroll-snap-type: x proximity;
+  /*IMPORTANTE
+      Si o si tenemos que poner el overflow en scroll y definir la altura para el contenedor (Height) 
+      Y scroll snap type en el contenedor y el scroll snap align en las slides
+      Sino el efecto NO FUNCIONA
+  */
+
+  display: grid; /*usa display grid en este ejercico para agrupar las slides en columnas osea una al lado de la otra*/
+  grid-template-columns: repeat(
+    5,
+    100%
+  ); /*genera 5 columnas que ocupan el 100%*/
+}
+
+.carrousel-slide {
+  /*Ahora va a aplicar flexbox para tener todo centrado tambien verticalmente*/
+  display: flex;
+  flex-direction: column; /*De arriba a abajo*/
+  justify-content: center; /*centrado horizontal*/
+  align-items: center; /*centrado vertical*/
+  /*fin flexbox*/
+
+  background-color: #108eb4;
+  scroll-snap-align: center;
+}
+
+.carrousel-slide:nth-child(even) {
+  background-color: #1e2345;
+}
+
+/*TEXTO CON GRADIENTES*/
+.gradient-text {
+  background-image: linear-gradient(45deg, magenta, yellow);
+  /*background-clip: text; /*esto hace la magia*/
+  /*Como no esta todavia soportada por todos hay que agregar los prefijos para cada navegador*/
+  -ms-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -ms-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; /*pongo en transparente el color del texto asi se ve el fondo*/
+  text-fill-color: transparent;
+}

@@ -1,0 +1,263 @@
+# Curso Completo de HTML, CSS y Responsive Design
+
+... https://www.youtube.com/playlist?list=PLvq-jIkSeTUZYcX9SYwVe7f66afwd9qk_
+
+## Fundamentos HTML
+
+- Estructura básica de un documento HTML
+- Etiqueta html y el atributo lang
+- Etiqueta DOCTYPE
+- Atributo charset
+- Meta etiqueta viewport
+- Título y Descripciones
+- Tabla Periódica de los Elementos HTML
+- Encabezados
+- Etiquetas de texto básicas
+- Etiquetas de texto semánticas
+- Etiquetas de salto
+- Etiquetas de formateo
+- Etiquetas semántica estructurales
+- Interpretando la semántica en HTML
+- Etiquetas de línea y de bloque
+- Estilos en HTML
+- Scripts en HTML
+- Imágenes
+- Vectores
+- Figuras
+- Listas Ordenadas
+- Listas Desordenadas
+- Listas de Definición
+- Tablas
+- Enlaces
+- Enlaces Internos
+- Enlaces y Protocolos especiales
+- Elementos Interactivos
+- Audio y Video
+- Iframes
+- Elementos de Formularios
+- Atributos de Inputs y Formularios
+- Selects, Radios y Checkboxs
+- Formulario de Contacto
+- DataAtributtes
+- Metaetiquetas para SEO y Móviles
+- Meta etiquetas para Redes Sociales
+- Accesibilidad Web
+
+## Fundamentos de CSS
+
+- Introducción a CSS
+- Sintaxis básica
+- Formas de invocación CSS
+- Versiones, documentación y enlaces de referencia
+- Selectores básicos: Etiquetas, Identificadores y Clases
+- Dando orden y estructura a nuestro código HTML y CSS
+- Selector de hijos directos y descendientes
+- Selector de hermanos y adyacente
+- Selectores de atributos
+- Selector Universal
+- Pseudoclases de estado
+- Pseudoclases por posición y tipo
+- Pseudoelementos
+- Agrupación de selectores
+- El Algoritmo de CSS
+- La Cascada
+- Especificidad
+- Practicando cascada y especificidad
+- Herencia
+- Reseteo y Normalización de estilos
+- Prefijos de los navegadores
+- Modelo de Caja
+- Width & Height
+- Border
+- Margin & Padding
+- Cajas de Línea VS Cajas de Bloque
+- Propiedad display
+- Propiedad visibility
+- Propiedad overflow
+- Tamaño de caja
+- Propiedades float & clear
+- Colapso de mágenes verticales
+- Adición de márgenes horizontales
+- Centrado de Cajas
+- Posicionamiento CSS
+- Posicionamiento static
+- Posicionamiento relative
+- Posicionamiento absolute
+- Posicionamiento fixed
+- Posicionamiento sticky
+- Propiedad z-index
+- Cabecera fixed VS Cabecera sticky
+- Efecto de slides con position sticky
+- Ventana Modal / Menú Móvil con posicionamiento fixed
+
+## Unidades y estilos CSS
+
+- Colores en CSS
+- Colores por Nombres
+- Convertidor de Colores
+- Sistema Hexadecimal
+- Sistema RGB
+- Sistema HSL
+- transparent & currentColor
+- Propiedad opacity
+- Unidades de Medida en CSS
+- Pixeles
+- EMs, REMs, EXs, CHs
+- Porcentajes
+- Unidades del Viewport
+- ¿Cuándo usar cada unidad de medida?
+- Variables y Funciones en CSS
+- Custom Properties y Función var()
+- Función url()
+- Función calc()
+- Función min() & max()
+- Función clamp()
+- Estilos de Fuentes y Textos
+- Estilos de Fuentes
+- Fuentes externas (@font-face & font-display)
+- Google Fonts
+- Estilos de Texto
+- Iconos Tipográficos
+- Propiedad border-radius
+- Propiedad outline
+- Estilos del Fondo
+- Propiedad background-color
+- Propiedad background-image
+- Propiedad background-size
+- Propiedad background-repeat
+- Propiedad background-position
+- Propiedad background-clip
+- Propiedad background-origin
+- Diferencias entre clip y origin
+- Propiedad background-attachment
+- Propiedad background
+- Fondos Múltiples
+- Estilos de Imágenes
+- Estilos de Listas
+- Texto en Columnas
+- Estilos de Tablas
+- Estilos de Formularios
+- Formulario de Contacto con CSS
+
+## Efectos visuales y movimientos en CSS
+
+- Estilos iniciales para nuestro documento
+- Sombra a las cajas (box-shadow)
+- Sombra a los textos (text-shadow)
+- Sombras múltiples
+- Filtro de sombras (drop-shadow)
+- Degradados lineales (linear-gradient)
+- Degradados radiales (radial-gradient)
+- Degradados cónicos (conic-gradient)
+- Patrones con degradados
+- Gráficas con degradados
+- Filtros (filter)
+- Filtros múltiples
+- Filtros a fondos (backdrop-filter)
+- Modo Dark/Light con filtros
+- Modos de Mezcla (mix-blend-mode)
+- Modos de Mezcla a fondos (background-blend-mode)
+- Máscaras (clip-path)
+- Formas (shape-outside)
+- Sitio One Page Scroll (scroll-margin & scroll-behaivor)
+- Ajuste del Scroll Efecto Slides Verticales (scroll-snap-type & scroll-snap-align)
+- Ajuste del Scroll Efecto Carrusel Horizontal (scroll-snap-type & scroll-snap-align)
+- Texto con Degradado
+- Movimiento en CSS
+- Transiciones
+- Propiedades Animables
+- Transiciones Múltiples
+- Porqué no usar la palabra all en tus transiciones
+- El Algoritmo de CSS y su efecto sobre las transiciones
+- Transformaciones en 2D
+- Transformación Matrix 2D
+- Transformaciones 2D Múltiples
+- Activando la Perspectiva 3D
+- Transformaciones en 3D
+- Transformación Matrix 3D
+- Transformaciones 3D Múltiples
+- Origen de Transformación (transform-origin)
+- Flip Cards con transiciones y transformaciones
+- Animaciones
+- Propiedades de Animación en CSS
+- Linea de tiempo y fotogramas claves en CSS
+- Animaciones Múltiples
+- Efecto fadein & fadeout
+- Efecto shake
+- Efecto pulse
+- Spinner / Loader animado
+- Botones Animados (maquetación)
+- Botones Animados (micro interacciones)
+- Botones con Gradientes Animados
+- Menú de Pestañas Tabs (maquetación)
+- Menú de Pestañas Tabs (animación)
+- Menú Off Canvas (marcado HTML)
+- Botón de Hamburguesa Animado
+- Menú Off Canvas (maquetación y animación)
+- Ventana Modal
+
+## Responsive design y arquitectura CSS
+
+- Introducción al Responsive Design
+- Contenedore Flexibles
+- Propiedades max-width, min-width, max-height y min-height
+- Tamaños fijos VS Tamaños máximos y mínimos
+- Multimedia Flexible
+- Atributo srcset y sizes
+- Etiqueta picture
+- Videos responsivos
+- Iframes responsivos
+- Media Queries versión 2.1
+- Media Queries versión 3
+- Breakpoints
+- Viewport
+- Grid Responsiva Artesanal con Flexbox
+- Feature Queries
+- Container Queries
+- SEO
+- Desktop First VS Mobile First
+- Adaptive Design
+- Responsive Design + Server Side Components (RESS)
+- Responsible Responsive Design
+- Fluid Design
+- Grid Fluida
+- Textos Fluidos
+- Contenedores Fluidos
+- Introducción a la Arquitectura CSS
+- Metodologías CSS
+- BEM
+- SMACSS
+- OOCSS
+- ITCSS
+- AMCSS
+- SUITCSS
+- Atomic Design
+- Conclusiones Metodologías CSS
+- Frameworks CSS
+- 960 Grid System
+- Skeleton
+- Pure CSS
+- Ink
+- MUI
+- Semantic UI
+- Bulma
+- UI kit
+- Materialize
+- Foundation
+- Tailwind
+- Bootstrap
+- Conclusiones Frameworks CSS
+- ¿Cómo elegir un Framework CSS?
+- Pre procesadores CSS
+- Stylus
+- Less
+- Sass
+- Post procesadores CSS
+- PostCSS
+- CSSNext
+- CSS in JS
+- Conclusiones Procesadores CSS
+- Herramientas de Automatización
+- Guías de Estilos
+- ¿Qué herramientas uso?
+- Arquitectura Minimalista

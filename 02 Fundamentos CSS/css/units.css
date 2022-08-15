@@ -1,0 +1,136 @@
+/*
+Unidades de Medida
+  1)Absolutas (Su valor no cambia, son unidades del mundo real)
+    pc, cm, mm, in, Q
+    pt (1/72in)
+    px (1/96in)
+
+  2)Relativas (Su valor es relativo a un contexto)
+    em, rem, ex, ch - al tamaño de la fuente
+      em - basada en la anchura de la "m" de fuente del elemento
+      rem - basada en la ancuhra de la "m" de la fuente del elemento raiz (html)
+      ex - basada en la altura de la "x" de la fuente del elemento
+      ch - basada en la anchura del "0" de la fuente del elemento. UN CH ES UN CARACTER ENTONCES WIDTH 10CH ENTRAN 10 CARACTERES
+    
+      % - al tamaño del contenedor
+      vw, vh, vmin, vmax - al tamaño del viewport
+        vw - ancho del viewport de 1 a 100
+        vh - alto del viewport de 1 a 100
+        vmax - entre vw y vh toma el que tenga mayor valor
+        vmin - entre vw y vh toma el que tenga menor valor
+
+Conviene usar siempre relativas porque son relativas al contexto eso es bueno para el responsive
+*/
+html{
+  box-sizing: border-box;
+}
+
+*,*::after,*::before{
+  box-sizing: inherit;
+}
+
+body{
+  margin: 0;
+}
+
+.pixels{
+  background-color: cadetblue;
+  width: 500px;
+  height: 400px;
+  padding: 20px;
+  font-size: 32px;
+  border: thick solid black;
+}
+
+.ems{
+  background-color: cadetblue;
+  border: thick solid black;
+  font-size: 24px;
+  padding: 1em .5em;
+}
+
+.em-child{
+  background-color: salmon;
+  border: thick solid beige;
+  font-size: 2em;
+  margin: 0.5em;
+  padding: 1em;
+}
+
+.rems {
+  background-color: cadetblue;
+  border: thick solid black;
+  font-size: 24px;
+  padding: 1rem .5rem;
+}
+
+.rem-child {
+  background-color: salmon;
+  border: thick solid beige;
+  font-size: 2rem;
+  margin: 0.5rem;
+  padding: 1rem;
+}
+
+.exs {
+  background-color: cadetblue;
+  border: thick solid black;
+  font-size: 24px;
+  padding: 1ex .5ex;
+}
+
+.ex-child {
+  background-color: salmon;
+  border: thick solid beige;
+  font-size: 2ex;
+  margin: 0.5ex;
+  padding: 1ex;
+}
+
+.chs {
+  background-color: cadetblue;
+  width: 10ch;
+}
+
+/*
+Porcentajes son respecto al padre, padding de 5% es respecto al padre
+EXCEPTO LA ALTURA, La altura la define el contenido
+*/
+.percentages{
+  background-color: darkkhaki;
+  width: 80%;
+  height: 100%; /* 100% es el tamaño que tenga el font size*/
+  padding: 5%;
+  margin: 20% 10%;
+}
+
+.height-parent{
+  background-color: brown;
+  width: 500px;
+  height: 500px;
+}
+
+.height-child{
+  background-color: coral;
+  width: 50%;
+  height: 50%;
+}
+
+/*Aca no hay problema con la altura porque esta basada en la pantalla, no en el contenedor como los porcentajes
+  La barra de desplazamiento tambien forma parte del viewport*/
+.viewports{
+  background-color: darkcyan;
+  /*Recuerda que la etiqueta body tiene margenes por defecto y las barras de scroll del navegador tambien forman parte del viewport
+    por esto si quiero hacer una imagen que ocupe toda la pantalla es mejor poner el ancho con porcentaje 100 y alto vh*/
+  width: 100vw;
+  height: 100vh;
+  font-size: 5vw;
+  padding: 2vh 2vw;
+}
+
+.vmax, .vmin{
+  background-color: darksalmon;
+  width: 50vmax;
+  height: 50vmin;
+  border: thick solid cyan;
+}

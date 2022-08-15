@@ -1,0 +1,1463 @@
+Una regla CSS consta de dos partes:
+  1)El selector: el elemento html (objeto) que le vamos a aplicar el bloque de estilos.
+  2)Bloque de declaraciones: cada uno de los atributos que vamos a modificar. 
+    La sintaxis es { atributo: valor; }
+
+Ejemplo
+  h1{
+    color: orangered;
+    background-color: skyblue;
+  }
+
+
+Para usar los estilos en el html hay 3 formas:
+  *En linea: es poniendolo en la etiqueta del elemento del html <p style="color: red"></p>
+  *Internamente: definirlos dentro de la cabecera del html 
+    <head>
+      <style>
+        h1{
+          color: yellowgreen;
+        }
+      </style>
+    </head>
+
+    *Con hoja externa: esta es la ideal. El link en la cabecera href y tipo stylesheet
+      <head>
+        <link rel="stylesheet" href="css/style.css">
+      </head>
+
+Se puede llamar una hoja de estilo dentro de otra con @import con la funcion url() dentro del parentesis va la ruta. Hay que poner el import arriba al principio del archivo:
+  @import url("otraHoja");
+PERO ESTO ES MALA PRACTICA NO HAY QUE USAR MUCHO
+
+----------------------------------------------------------------------------------------------------------Selectores basicos
+  1)Elementos html
+  2)Identificadores atributo id - #
+  3)Clases atributo class - .
+
+El orden cuando pongo todos juntos es: etiqueta,id,clase,atributo
+                                        input#id.clase[type="algo"]{...}
+----------------------------------------------------------------------------------------------------------
+Selectores avanzados
+  *Hijo directo: el hijo de primer nivel en css se usa > 
+  *Hijo descendiente: cualquier hijo dentro de un elemento en css se usa un espacio 
+    .hijos-descendientes b {...}
+
+  *Hermano general: para todos los hermanos del mismo nivel PERO POR DEBAJO se usa ~ 
+    .hermanos-general ~ li{...}
+  *Hermano adyacente: para el hermano por debajo inmediatamente. se usa +
+    .hermanos-adyacentes + li {...}
+
+  *Selectores de atributos: seleccionamos por atributos, para eso ponemos entre corchetes el atributo que que vamos hacer referencia.
+      .selectores-atributos a[href] {...}
+    Tambien podemos elegir por valores de atributo.
+      .selectores-atributos a[target="_blank"] {...}
+
+  * * es caracter comodin, quiere decir que todos los href que tengan dentro la palabra jonmircha le aplica el estilo. Es como un contains() */
+      .selectores-atributos a[href*="jonmircha"] {...}
+
+  * ^ es otro comodin, quiere decir que el estilo se aplica cuando empiece con la palabra despues del triangulo
+      .selectores-atributos a[href^="http"]{...}
+
+  * $ es un comodin que quiere decir que el estilo se aplica cuando la palabra exista al final del atributo indicado
+      .selectores-atributos a[href$=".com"] {...}
+
+  * ~ es un comodin que aplica el estilo si contiene el texto en cuestion en una lista separada por espacios
+      .selectores-atributos a[class~="cursos"] {...}
+
+  * | es un comodin que aplica el estilo si contiene el texto en cuestion en una lista separada por espacios y que despues del texto en cuestion viene un guion medio (-) */
+      .selectores-atributos a[class|="menu"] {...}
+
+  Selector universal (*): el asterisco es selector universal. Quiere a decir a todos.
+      *{...}
+    Tambien puedo seleccionarlas contextualmente
+      .selector-universal * {...}
+
+----------------------------------------------------------------------------------------------------------
+PSEUDOCLASES
+    Dan estilos dependiendo el contexto o dependiendode ciertos estados que tenga el elemento html
+    Vamos a ver algunas, hay muchas, buscar en mozilla. 
+    Se acceden con dos puntos (:)
+
+      required: todos los elementos del tipo requerido. .form-pseudoclases *:required{...}
+      valid: todos los elementos con valid .form-pseudoclases *:valid {...}. Invalid es lo opuesto
+      focus: para cuando tienen foco.
+      disabled
+      hover: Los hover son interactivos, todos los que son interactivos tienen que ir al final para que otras clases no la pisen
+      visited
+      target
+
+      .lista-pseudoclases li:first-child : el primer hijo li SOLO FUNCONA EN ESTE CASO SI ES LI SI ES OTRA ETIQUETA NO VA A HACER NADA. SOLO AGARRA EL PRIMER HIJO SI ES LA ETIQUETA SI OTRA ETIQUETA NO. SI TENGO UN LI COMO PRIMER ETIQUETA Y YO HAGO p:firs-child NO VA A FUNCIONAR. LO MISMO VA A PASAR CON LAST-CHILD
+      .lista-pseudoclases li:last-child
+      .lista-pseudoclases li:nth-child() : nth el n elemento. nth child recibe entre parentesis el numero 
+        del elemento a aplicar el estilo, si es 3 aplica al tercer elemento
+          .lista-pseudoclases li:nth-child(3){...}
+      .lista-pseudoclases li:nth-child(4n) : el n es para ir de n en n. 4n es que voy de 4 en 4 elementos 
+          (el numero 4 luego el 8 luego 12 y asi)
+      .lista-pseudoclases li:nth-child(even) : even es para pares
+      .lista-pseudoclases li:nth-child(odd) : odd es para impares
+
+      .articulo-pseudoclases p:first-of-type : first of type toma el primer elemento de la etiqueta mandada
+      .articulo-pseudoclases p:last-of-type
+      .articulo-pseudoclases p:nth-of-type(3): lo mismo con el nth child pero este es para el tipo de     etiqueta indicado osea el tercer parrafo
+      .articulo-pseudoclases *:not(p, otro elemento, otra clase)  :  :not() NEGACION: aplicar estilos a todos los elementos excepto al definido
+    
+----------------------------------------------------------------------------------------------------------
+PSEUDOELEMENTOS
+  Dan estilos a partes especificas de un elemento, se usan dos doble puntos para identificarlos (::)
+
+    ::after y ::before : after y before nos permiten agregar contenido antes o despues de un elemento en  particular. El contenido se pone en el atributo content
+          .saga-geminis::before{
+            content: "hola";
+            font-weight: bold;
+          }
+
+    ::first-letter : primer letra. .p-pseudoelemento::first-letter{...}
+
+    ::first-line : primer linea .p-pseudoelementos::first-line{...}
+
+    ::selection : cuando se selecciona .p-pseudoelementos::selection{...}
+
+    ::placeholder : para el placeholder de un elemento por ejemplo un 
+    
+----------------------------------------------------------------------------------------------------------
+EL ALGORITMO DE CSS
+  Es la forma en que el navegador aplica estilos al documento HTML. Es vital entender este concepto para que entiendas como se aplican y en algunas ocasiones se sobreescriben las reglas CSS.
+    1)La cascada
+    2)La especificidad
+    3)La herencia
+
+  La cascada es el mecanismo en que el navegador aplica los estilos. Segun el siguiente orden:
+    1)El origen del codigo:
+      -El user agent (estilos por defecto del navegador)
+      -Personalizacion del usaurio (zoom tema claro tema oscuro)
+      -Estilos del autor (el codigo css)    
+    2)La especificidad del selector
+    3)Orden de aparicion
+
+  La especificidad es el peso que tiene un selector cuando hay conflictos de estilos. Se calcula de la siguiente forma:
+    Etiquetas y pseudoelementos.................... 0,0,0,1
+    Clases, atributos y pseudoclases............... 0,0,1,0
+    Identificadores................................ 0,1,0,0
+    Estilos en linea............................... 1,0,0,0
+    !important..................................... Rompe la especificidad
+
+  La herencia es la capacidad de un selector de heredar los valores de sus ancestros mas cercanos, para aplicarla se usa el valor inherit, si queremos evitarla podemos asignar otro valor o inicializar la propiedad en cuestion con el valor inicial
+
+----------------------------------------------------------------------------------------------------------
+RESETEO
+  Ya no es tan bueno resetear, lo que si esta bueno es ir a la pagina de normalize.css y usar eso.
+
+----------------------------------------------------------------------------------------------------------
+MODELO DE CAJA
+  Todos las etiquetas html son cajas con margen borde padding etc (Se ve en la pestaña computed de la consola).
+
+  Es la forma en que CSS ve a los elementos html, como si fueran cajas con las siguientes propiedades:
+    1. El contenido (Content) El contenido (texto) del elemento html considerando sus dimensiones (width & height).
+    2. Borde (Border): Lo que delimita cada uno de los elementos html.
+    3. Relleno (Padding): Son las distancias internas (La distancia del borde al contenido).
+    4. Margen (Margin): Son las distancias externas (La distancia entre el elemento html y sus elementos  hermanos o padres, todo lo que hay afuera de la caja)
+
+  Dentro de la caja hay que considerar que una caja tendra 4 lados (se lee en sentido horario):
+    1.Arriba (top).
+    2.Derecha (right).
+    3.Abajo (bottom).
+    4.Izquierda (left).
+
+  
+h1{
+  /*content*/
+  width: 400px;
+  height: 200px;
+
+  /*border*/
+  border-color: green;  
+  border-width: thick; /*thin es 1px, medium 3px y thick 5px*/ /*border-width: arri y abajo | izq y der */
+  border-style: solid;
+  border:2px dashed blue; /*border-width | border-style | border-color*/
+}
+
+/*padding y margin*/
+.caja-uno,
+.caja-dos{
+  background-color: chocolate;
+  border: medium solid orange;
+  /*padding*/
+  padding: 20px;
+
+  /*margin*/
+  margin: 20px;
+
+  /*
+  Esto aplica para margin y padding
+   1 valor = aplica a los 4 lados.
+
+   2 valores = primer valor lados verticales (Arriba y abajo) segundo valor para los lados (derecha e izquierda)
+
+   3 valores = el primero es para top, el segundo para left y right y el tercero es para bottom. (rombo)
+
+   4 valores = arriba derecha abajo izquierda (sentido horario).
+  */
+  padding: 20px 40px;
+  margin: 40px 20px;
+  padding: 0 40px 20px;
+  margin: 50px 30px 0;
+  padding: 0 40px 20px 50px;
+  margin: 100px 50px 30px 0;
+}
+
+
+
+
+Caja de Linea:
+  -Ocupan el espacio necesario para mostrar su contenido
+  -No tienen dimensiones modificables(alto,ancho) IMPORTANTE, NO PASA NADA CUANDO MODIFICO WIDTH Y HEIGHT
+  -Permiten otro elementos a su lado
+  -Padding y margin solo empujan a elementos adyacentes en horizontal, NUNCA EN VERTICAL, NO VA A HACER NADA ARRIBA Y ABAJO SOLO LO VA A TAPAR
+
+Caka de Bloque:
+  -Ocupan todo el ancho disponible
+  -Tienen dimensiones modificables (ancho y alto)
+  -No permiten otros elementos a su lado (aunque especifique un ancho, sigue ocupando todo el ancho disponible)
+
+
+Propiedad Display
+    inline
+    block
+    inline-block - Se comporta como un elemento de linea pero acepta modificar sus dimensiones (ancho y alto)
+    none
+    table
+    list-item
+    flex
+    grid
+
+
+TAMAÑO DE LA CAJA
+  Hay dos opciones content-box que es la por defecto y content-box. Cuando usamos content box el ancho y el alto que definamos es el del contenido entonces si ponemos que el contenido osea el content tenga un ancho de 200 x 400 px pero agregamos padding o borde estos dos se van a sumar al ancho y alto entonces se va a hacer mas grando. Ejemplo al content le agrego paddingo de 10px a los 4 lados y borde de 5px a los 4 lados. Entonces el tamaño total que ocupa la caja va a crecer a 230(200+10+10+5+5)px x 430(400+10+10+5+5)px.
+
+  En cambio BORDER BOX  el ancho y el alto de la caja incluye el borde y padding. Por lo que si hago un elemento de ancho y alto de 200 x 400px y el box sizing en border box la caja siempre va a medir 200 x 400px. Si agrego borde y padding estos se agregan por adentro entonces el content se hace mas chico pero siempre la caja va a medir 200 x 400 no se va a agrandar. ESTE ES EL MODO QUE SIEMPRE USO Y MIRCHA TAMBIEN CUANDO HAGO EL RESETO. BOOTSTRAP TAMBIEN USA BORDER-BOX. ES MEJOR USAR BORDERBOX PARA QUE NO SE AGRANDE LA CAJA CUANDO META BORDE Y PADDING.
+
+
+FLOAT Y CLEAR
+  Float nos permite flotar hacia la izquierdao o hacia la derecha elementos. Float left va a ubicarse en el espacio mas a la izquierda en el que puede acomodarse. Floar right lo mismo pero a la derecha.
+  ESTO SE USABA ANTES DE FLEXBOX Y GRID. AHORA SE ES MALA PRACTICA.
+  Float te rompe todo muchas veces y para eso esta clear para limpiar eso. clear left clear right y clear both. EVITAR USAR FLOATS YA NO SE USA.
+
+
+COLAPSO DE MARGENES VERTICALES IMPORTANTE!!!
+  Los margenes verticales de las cajas, osea los margin top y margin bottom no se suman entre si SE COLAPSAN entonces si tengo un objeto con margin bottom 16px y otro objeto abajo con margin top 16px NO SE SUMAN el espacio vertical entre ellos no va a ser 32px va a ser 16 PX PORQUE SE COLAPSAN. SOLO LOS VERTICALES.
+  Por eso hay que tratar de solo usar margin top o solo usar margin bottom. NO USAR AMBOS
+
+ADICION DE MARGENES HORIZONATALES
+  En cambio los margenes horizontales SI SE SUMAN. Si tengo un elemento margin right 16px y otro al lado margin left 16px entonces el espacio si va a ser 32px PORQUE SI SE SUMAN.
+
+
+CENTRADO DE CAJAS
+  PARA CENTRAR COSAS HAY QUE CENTRAR SU CAJA para eso es como ya lo sabia con margin left y margin right auto.
+
+
+----------------------------------------------------------------------------------------------------------
+POSICIONAMIENTO CSS
+
+  La propiedad FLOAT y POSITION nos permiten modificar la posicion natural cualquier elemento del documento HTML.
+
+  El navegador coloca cada elemento teniendo en cuenta el orden en el que aparecen en el documento y su tipo de visualizacion dependiendo si es un elemento de linea o de bloque.
+
+  Con FLOAT y POSITION podemos modificar este comportamiento.
+
+  Elementos Flotantes
+    -float: Convierte un elemento en flotante desplazandolo hasta la zona mas a la izquierda o mas a la derecha de donde se encontraba.
+    -clear: Limpia la flotacion.
+
+  Tipos de posicionamiento:
+    -static(default)
+    -relative
+    -absolute
+    -fixed
+    -sticky
+
+  Para mover los elementos posicionados se activan las propiedades:
+    -top
+    -bottom
+    -left
+    -right
+    -z-index (profundidad)
+
+  Las propiedades top y left van a tener preferencia por sobre bottom y right respectivamente.
+
+  ESTAS 5 PROPIEDADES NO FUNCIONAN CON EL VALOR STATIC
+
+
+  STATIC
+    Es el valor por defecto, significa que el elemento respeta el flujo del documento HTML, por lo que no se puede mover ni posicionar.
+
+  RELATIVE
+    El elemento conserva sus dimensiones y posicion original en el flujo del documento. Si se mueve toma como referencia su posicion original.
+
+  ABSOLUTE
+    El elemento pierde sus dimensiones y posicion original en el flujo del documento. Si se mueve puede tomar como referencia 2 elementos:
+      1)El primer ancestro con posicionamiento relativo.
+      2)Si no encuentra un ancestro con posicionamiento relativo, se mueve respecto del documento HTML
+
+  FIXED
+    El elemento pierde sus dimensiones y posicion original en el flujo del documento. Si se mueve toma como referencia el documento HTML y queda FIJO en la posicion cuando el scroll se mueva.
+
+  STICKY
+    Es una combinacion de posicionamiento relative y fixed, para este posicionamiento las propiedades de top, left, bottom y right no mueven el elemento, sirven como un punto de referencia, mientras no lleguen a ese valor el elemento se comporta como relative, cuando llega se convierte en fixed.
+    Para que este comportamiento funcione el elemento sticky debe ser hijo directo del body o su elemento contenedor debe tener dimensiones definidas y solo sera sticky dentro de las dimensiones de su contenedor padre.
+
+Z-INDEX
+  Es una propiedad que nos permite controlar la profundidad de los elementos posicionados, su valor por defecto es auto, acepta numeros positivos, negativos y cero.
+  A mayor valor el elemento esta mas al frente, a menor valor mas al fondo.
+  Un elemento padre nunca podra estar sobre sus elementos hijos, sin embargo los elementos hijos si pueden dandoles un valor negativo y el padre sin z index.
+
+
+
+
+
+IMPORTANTE!!
+  Sabemos que top y left tienen preferencia sobre bottom y right PERO SI PONEMOS LAS 4 POSICIONES IGUALADAS A 0 SE LOGRA UN EFECTO QUE CUBRE TODA LA PANTALLA
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------CURSO HTML Y CSS PARTE 3
+
+COLORES EN CSS
+  Se pueden aplicar por:
+    * Nombre
+    * Hexadecimal
+    * RGB
+    * HSL
+
+
+  SISTEMA HEXADECIMAL
+  0123456789ABCDEF
+
+  RGB(Medios digitales) vs CMYK(Medios impresos) [CyanMagentaYellowKey]
+
+  Colores en Hexadecimal van a ser colores de 6 digitos 
+  #FF(Canal Rojo) 66(Canal verde) 00(Canal azul)
+  Y PUEDO AGREGARLE DOS VALORES MAS PARA LA OPACIDAD -> #FF(Canal Rojo) 66(Canal verde) 00(Canal azul) 50(Opacidad del 50%)
+
+  Sistema RGB
+    0-255
+    (Rojo, Verde, Azul)
+      background-color: rgb(255, 255, 255);
+    
+    Para tener opacidad uso rgba(255,255,255, 0.5) Es blanco al 50% de opacidad
+
+  Sistema HSL
+    HueSaturationLightness (Tono-Saturacion-Luminosidad)
+
+    El primer es Hue(Circulo Cromatico)
+      0° -> red
+      60° -> yellow
+      120° -> green
+      180° -> cyan
+      240° -> blue
+      300° -> magenta
+
+    hsl(16, 100%, 66%)
+
+    Primer valor es el tono, el segundo es la saturacion (intensidad del color [0% -> 100%]) y el tercero de la luminosidad o lightness (luminosidad hacia negro o hacia blanco [0% -> 100%])
+    50% -> color puro
+
+    Para agregar opacidad es con hsla y el cuarto parametro de 0 a 1 es la opacidad como en rgb
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+  Valor transparent: color transparente es igual a aplicar rgba(0,0,0,0)
+  Valor currentColor: hereda el valor por defecto o asignado de la propiedad color, del ancestro que tenga definida esta propiedad, busca del ancestro mas cercano al mas lejano.
+
+  .color-transparent-current{
+    background-color: darkmagenta;
+    background-color: transparent;
+    background-color: currentColor;
+  }
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+Unidades de Medida
+  1)Absolutas (Su valor no cambia, son unidades del mundo real)
+    pc, cm, mm, in, Q
+    pt (1/72in)
+    px (1/96in)
+
+  2)Relativas (Su valor es relativo a un contexto)
+    em, rem, ex, ch - al tamaño de la fuente
+      em - basada en la anchura de la "m" de fuente del elemento
+      rem - basada en la ancuhra de la "m" de la fuente del elemento raiz (html)
+      ex - basada en la altura de la "x" de la fuente del elemento
+      ch - basada en la anchura del "0" de la fuente del elemento. UN CH ES UN CARACTER ENTONCES WIDTH 10CH ENTRAN 10 CARACTERES
+    
+      % - al tamaño del CONTENEDOR
+      vw, vh, vmin, vmax - al tamaño del VIEWPORT
+        vw - ancho del viewport de 1 a 100
+        vh - alto del viewport de 1 a 100
+        vmax - entre vw y vh toma el que tenga mayor valor
+        vmin - entre vw y vh toma el que tenga menor valor
+
+Conviene usar siempre relativas porque son relativas al contexto eso es bueno para el responsive
+
+Porcentajes son respecto al padre, padding de 5% es respecto al padre
+EXCEPTO LA ALTURA, La altura la define el contenido
+
+VH y VW
+/*Aca no hay problema con la altura porque esta basada en la pantalla, no en el contenedor como los porcentajes
+  La barra de desplazamiento tambien forma parte del viewport*/
+.viewports{
+  background-color: darkcyan;
+  /*Recuerda que la etiqueta body tiene margenes por defecto y las barras de scroll del navegador tambien forman parte del viewport
+    por esto si quiero hacer una imagen que ocupe toda la pantalla es mejor poner el ancho con porcentaje 100 y alto vh*/
+  width: 100vw;
+  height: 100vh;
+  font-size: 5vw;
+  padding: 2vh 2vw;
+}
+
+CUAL UNIDAD DE MEDIDA USAR?
+  Para imprimir cm,mm,in
+
+  El font-size del html hay que definirlo en px.
+  Todo el resto de la tipografia lo mejor es expresarlo en REMS porque siempre esta basado en el html.
+
+  Padding y margins conviene usar REMS. Si tengo por ejemplo tarjetas de distintos tamaños, tarjeta grande, pequeña etc y quiero espacios proporcionales en ese caso puede convenir EMS.
+
+  PORCENTAJES en responsive.
+
+  VW y VH tambien en responsive o cuando tenga que tomar el tamaño de la pantalla completa como la hero image. O para font size que sea responsive.
+
+------------------------------------------------------------------------------------------------------------------------------------------------VARIABLES Y FUNCIONES EN CSS
+
+  Custom Propertys (Variables CSS)
+    Las variables se tienen que definir dentro de un selector. Para definir una variable se usa dos guiones (--). Se puede guardar cualquier cosa en las variables, colores, tamaños etc
+      .custom-props-1{
+        --primary-color: gray;
+        --font-size: 32px;
+      }
+
+    Para usar una variable se utiliza la funcion var(nombre de la variable):
+      background-color: var(--primary-color);
+
+    Las variables de un contenedor se pueden heredar a sus hijos. Puedo usarlas en los hijos.
+    Las variables tienen un ambito no existen afuera del contenedor donde la declaramos.
+
+    La funcion var puede recibir un segundo valor, en caso de que no encuentre la variable aplica el segundo valor.
+      var(variable, valor-por-defecto)
+
+    Si quiero declarar variables globales puedo usar la pseudoclase :ROOT. :root es el html pero con la diferencia que tiene mas peso que la etiqueta html.
+      :root{
+        --variable: 2px;
+      }
+    Todas las variables en root van a estar disponible globalmente.
+
+  FUNCION URL()
+    url recibe una ruta de un archivo. Se usa para el import por ejemplo para cargar una hoda de estilo @import url("archivo.css").
+
+  FUNCION CALC()
+    Es para hacer calculos arimeticos. Meto los valores entre parentesis con los operadores como si fuera una calculadora y devuelve el resultado.
+
+      .ch-10{
+        --num-ch: 10ch;
+        --padding-size: 2ch;
+
+        background-color: var(--default-bg-color);
+        font-size: 2rem;
+        width: 10ch;
+        padding: var(--padding-size);
+
+        width: calc(var(--num-ch) + var(--padding-size) * 2);
+      }
+    
+    IMPORTANTE: HAY QUE DEJAR UN ESPACIO ENTRE EL OPERADOR Y EL OPERANDO (SIGNO Y NUMERO) SINO NO FUNCIONA
+
+  FUNCION MIN() Y MAX()
+    Min(v1, v2...) devuelve el minimo de los valores que pasemos.
+    Max(v1, v2...) devuelve el maximo de los valores que pasemos.
+
+  FUNCION CLAMP()
+    Recibe 3 valores, el tamaño minimo, tamaño IDEAL y tamaño maximo. Tambien permite hacer calculos.
+    Va a servir mucho en responsive.
+
+------------------------------------------------------------------------------------------------------------------------------------------------ESTILOS DE FUENTES Y TEXTO
+  font-family
+  font-size
+  font-weight
+  font-style
+  font-variant
+  font
+
+
+  .font{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: sans-serif;
+    font-size: 32px;
+    font-weight: 200; /*Peso de la tipografia. De 100 a 900, generalmente 400 es el normal*/
+    font-style: italic; /*Estilo de la fuente*/
+    font-variant: small-caps; /*Es la variante del texto hay 2: normal y small-caps que pone todo en mayuscula*/
+    line-height: 2; /*Es el interlineado el espacio en la altura entre letras.*/
+    font: italic small-caps 200 32px / 2 sans-serif ; /*Font es shorthand para font-style font-variant font-weight font-size / line-height font-family. IMPORTANTE HAY QUE PONER LA BARRA ENTRE EL FONT SIZE Y LINE HEIGHT*/
+  }
+
+  CARGAR FUENTE EXTERNAS
+    Hay que tener los archivos fisicos de la tipografia en formato woff o woff2 (Web open font format). Para utilizarlas hay que usar la etiqueta @font-face y adentro en la propiedad font-family ponemos el nombre que le damos a la tipografia. Y en src la ruta del archivo fisico woff.
+    Y despues ya puedo usarla en las etiquetas con el nombre entre comillas.
+
+    @font-face {
+      font-family: "Chalet";
+      src: url("../assets/Chalet.woff");
+      /* src: url("../assets/Chalet.woff") format("woff"), url("../assets/Chalet.woff2") format("woff2"); En caso de que tenga varios formatos de donde poder tomarlo, se queda con el correcto */
+    }
+
+    .chalet{
+      font-family: "Chalet", sans-serif; /*Uso mi tipografia externa si no la puede cargar usa sans serif*/
+    }
+    
+    Tambien tenemos una propiedad que se llama font-display que tiene mas opciones de como cargar las fuentes externas, estas opciones son:
+      font-display:
+        auto - permite que el navegador use el metodo predeterminado que suele ser block
+        block - oculta brevemente el texto hasta que la fuente haya sido descargada por completo
+        swap - indica al navegador que utilice la fuente alternativa para mostrar el texto hasta que la fuente personalizada se haya cargado por completo
+        fallback - es una mezcla de auto y swap
+        optional - ocultara el texto, luego lo cargara en la fuente alternativa y finalmente aplicara la fuente personalizada
+
+    Swap es la ideal
+
+      @font-face {
+        font-family: "Pesita", sans-serif;
+        src: url("../assets/Pecita.woff");
+        font-display: swap;
+      }
+
+  GOOGLE FONTS
+    Se entra a la pagina de google fonts y elegimos la que queramos, algunas vienen por pesos la regular es 400. Y te da el link para llamarlos por html o por css. La correcta es por los enlaces html en el head ANTES DE LA HOJA DE ESTILOS ES LA RECOMENDACION.
+    Y como se usa es como las otras en la etiqueta y por el nombre de font family que indica google de como usar.
+
+    HTML - HEAD
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;900&display=swap" rel="stylesheet">
+
+    CSS
+      .raleway{
+        font-family: 'Raleway',
+        sans-serif;
+        font-size: 2rem;
+      }
+
+  Estilos de texto
+    text-align
+    text-decoration
+    text-indent: genera una tabulacion UNA SANGRIA.
+    text-overflow: para cuando el texto desborda de la caja. Tengo dos opciones clip: lo corta ; y ellipsis pone punto suspensivos donde desborda.
+      Para usarlo tengo que tener esto:
+        overflow: hidden;
+        white-space: no wrap;
+    text-transform: para poner todo en mayuscula o minuscula, o la primer letra en mayuscula (capital)
+    letter-spacing: espaciado de cada caracter
+    white-space: nos dice que hacer con los espacios en blanco. nowrap corta todos los saltos de linea y deja todo en una unica linea.
+     Cuando muchos espacios en blancos seguidos el navegador solo toma uno, para que respete todos los espacios en blanco puedo ponerle el valor PRE.
+
+    word-break: si lo pongo en break all rompe toda la palabra para hacerla entrar en el espacio
+    word-spacing: como el letter spacing pero para palabras
+    writing-mode: modo de escritura, en oriente escriben al reves que nosotros. O tambien de arriba abajo verticalmente o invertirlo
+
+------------------------------------------------------------------------------------------------------------------------------------------------BORDER Y OUTLINE
+  .border-radius{
+    border-top-left-radius: 4rem;
+    border-top-right-radius: 4rem;
+    border-bottom-left-radius: 4rem;
+    border-bottom-right-radius: 4rem;
+    border-radius: 2rem; /*shorthand para los 4 lados*/
+    border-radius: 2rem 4rem; /*shortHand, arriba izquierda 2rem, arriba derecha 4, abajo derecha 2, abajo izquierda 4*/
+    border-radius: 2rem 4rem 0; /*shortHand arriba izquierda 2, arriba derecha 4, abajo derecha 0, abajo izquierda 2*/
+    border-radius: 4rem 3rem 2rem 1rem;/*shortHand arriba izquierda 4, arriba derecha 3, abajo derecha 2, abajo izquierda 1*/  000
+  }
+
+  Para bordes elipticos
+    Para hacerlo eliptico tengo que poner un valor y despues la barra (/) y despues otro valor
+
+    .border-radius-eliptic {
+      border-radius: 2rem / 4rem; /*2rem en el radio horizontal de la elipse, 4 rem en el radio vertical de la elipse (Las elipses tienen dos radios). Su shorthandes medio confunso conviene usarlo individualmente con border-top-left-radius etc*/*/
+    }
+
+  Para hacer un circulo perfecto es suficiente con poner al 50% los 4 lados, LA CAJA TIENE QUE SER CUADRADA PRIMERO OBVIAMENTE, si es rectangular va a pasar cualquier cosa
+
+    .border-radius-circulo{
+      border-radius: 50%;
+    }
+
+  Outline
+    El outline como lo dice el nombre es un borde EXTERIOR a la caja. Se usa con:
+      outline: shorthand para outline-color outline-style outline-width
+      O tambien se pueden usar las propiedades individualmente. NO TIENE OUTLINE TOP O PARA CADA LADO, SOLO LOS 4
+
+      .outline{
+        outline-width: 5px;
+        outline-style: dashed;
+        outline-color: chartreuse;
+        outline: thick solid blue;
+        outline-offset: 4rem; /*Cuanto me alejo de la caja, tambien se puede aplicar en sentido negativo*/
+      }
+
+------------------------------------------------------------------------------------------------------------------------------------------------FONDOS EN CSS
+  Las distintas propiedades para fondos en css son:
+    background-color: define el color de fondo del elemento.
+    background-image: pone una imagen como fondo del elemento.
+    background-repeat: define como se repite la imagen de fondo en el elemento. Por defecto en repeat      
+    background-size: 
+      define el tamaño de la imagen de fondo, primero el valor en x, despues el valor en y.
+      cover: cambia el tamaño de la imagen de fondo para asegurarse de cubrir el contenedor.
+      contain: cambia el tamaño de la imagen de fondo para asegurarse que se la muestre completamente. Si es mas chica que el contenedor van a quedar partes vacias o se repite por el repeat.
+    background-position:
+      define la posicion de la imagen de fondo, primer valor en x. Segundo valor en y. Si no se pone segundo valor es center.
+      tambien se puede poner las palabras center,top,bottom,left and right.
+    background-clip: define cuanto debe extenderse el fondo dentro del elemento. El defecto es border box. De donde empieza el color de fondo.
+    background-origin: define el origen de la imagen de fondo. Donde empieza la imagen de fondo. Por defecto es padding box.
+    background-attachment: define como se comportara la imagen de fondo al desplazarse por la pagina.
+
+  .bg-size {
+    background-image: url("../assets/puesta-sol.jpg");
+    background-size: 300px 200px;
+    background-size: 300px; /*Un solo valor es el ancho y la altura queda en auto*/
+    background-size: cover;
+    background-size: contain;
+  }
+
+  .bg-repeat {
+    background-image: url("../assets/puesta-sol.jpg");
+    background-size: 100px;
+    background-repeat: repeat; /* repite en x y en y. El defecto*/
+    background-repeat: repeat-x; /* solo en x*/
+    background-repeat: repeat-y; /* solo en y*/
+    background-repeat: no-repeat;/* no repite*/
+  }
+
+  .bg-position {
+    background-color: skyblue;
+    background-image: url("../assets/puesta-sol.jpg");
+    background-size: 100px;
+    background-repeat: no-repeat;
+    background-position: 10px 20px;
+    background-position: 30px;
+    background-position: top center;
+    background-position: top right;
+    background-position: top left;
+    background-position: center;
+    background-position: bottom left;
+    background-position: bottom right;
+    background-position: bottom;
+  }
+
+  .bg-clip {
+    background-color: skyblue;
+    background-image: url("../assets/puesta-sol.jpg");
+    background-size: 200px;
+    padding: 1rem;
+    background-repeat: no-repeat;
+    background-clip: padding-box;
+    background-clip: content-box;
+  }
+
+  .bg-origin {
+    background-color: skyblue;
+    background-image: url("../assets/puesta-sol.jpg");
+    background-size: 200px;
+    padding: 1rem;
+    background-repeat: no-repeat;
+    background-origin: padding-box;
+    background-origin: border-box;
+    background-origin: content-box;  
+  }
+
+  .bg-attachment {
+    background-color: skyblue;
+    background-image: url("../assets/puesta-sol.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 50vh;
+    background-attachment: scroll; /*default*/
+    background-attachment: fixed; /*Se ve como si estuviera viendo por una ventana esta re lindo el efecto es el mismo que puse en la pagina de taubrix. EFECTO PARALAX*/
+  }
+
+  /*Puedo poner multiples imagenes poniendo con comas mas imagenes mientras mas a la derecha las defina mas al fondo van a mostrarse
+  las propiedades tambien van por coma dependiendo a cual imagen quiero aplicar*/
+  
+  .bg-multiple{
+    background-image: url("../assets/favicon.png"), url("../assets/puesta-sol.jpg"); /*Mas a la derecha salen mas al fondo*/
+    width: 50%;
+    height: 30vh;
+    background-repeat: repeat-x, no-repeat;
+    background-size: 10%, cover;
+  }
+
+------------------------------------------------------------------------------------------------------------------------------------------------IMAGENES EN CSS
+  Las imagenes son elementos de LINEA.
+
+  PARA HACERLAS RESPONSIVAS
+  img{
+    max-width: 100%;
+    height: auto;
+  }
+
+  TARJETAS
+  .card{
+    border: medium solid black;
+    width: 400px;
+    height: 400px;
+  }
+
+  EN CASO DE NECESITAR MEDIDAS CONCRETAS POR EJEMPLO AL HACER CARDS LA IMAGEN PUEDE DEFORMARSE. ACA ABAJO LA FORMA DE TRABAJAR PARA QUE SE VEA LO MEJOR POSIBLE
+  .card img{
+    height: 300px; /*Supongo que quiero que la imagen ocupe solo 300px de la tarjeta. ESTO LA VA A DEFORMAR*/
+  }
+  
+    Para poder arreglar este problema tenemos OBJECT FIT y OBJECT POSITION
+  
+    OBJECT FIT es como background size, por defecto es fill (que rellena y deforma) las otras dos son: 
+    cover: cambia el tamaño de la imagen de fondo para asegurarse de cubrir el contenedor. 
+    contain: cambia el tamaño de la imagen de fondo para asegurarse que se la muestre completamente. Si es mas chica que el contenedor van a quedar partes vacias o se repite por el repeat.
+    
+    object-fit: cover;
+
+    OBJECT POSITION es como background position. Define la posicion de la imagen de fondo, primer valor en x. Segundo valor en y. Si no se pone segundo valor es center. Tambien se puede poner las palabras center,top,bottom,left and right.*/
+  
+    object-position: top left;
+
+    Al poner object-fit en cover hago que la imagen cubra el contenedor y no se deforme. Como la imagen puede ser mas grande que el contenedor entonces se van a cortar partes. Y por eso pongo object-position top left para ponerla arriba a la izquierda del contenedor asi se vea la mayor parte de la imagen y solo corte algunos bordes. Con eso queda linda sin deformar y responsiva
+
+      .card img{
+        height: 300px;
+        object-fit: cover;
+        object-position: top left;
+      }
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+LISTAS EN CSS
+  .list{
+    /*list-style-type es para cambiar el tipo puedo poner cuadrados en vez de circulos de la lista etc
+    Aunque la lista sea desordenada se le puede poner estlilos de listas ordenadas y lo toma bien*/
+    list-style-type: disc;
+    list-style-type: circle;
+    list-style-type: decimal-leading-zero;
+    list-style-type: square;
+
+    /*list-stlyle-image es para poner una imagen como bullet*/
+    /* list-style-image: url(); */
+  }
+
+
+  /*Como el list-style-image si le pongo una imagen grande va a quedar feo en la lista, jon da esta clase de abajo para poder poner una imagen  como bullet sin que se vea feo*/
+  .list li{
+    list-style-type: none;
+  }
+
+  .list li::before{
+    content: "";
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    background-image: url("../assets/favicon.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .list-2 li {
+    background-color: coral;
+    list-style-position: outside; /*por defecto*/
+    list-style-position: inside; /*el bullet forma parte del texto no conviene usar esto sale feo*/
+  }
+
+  .list-3 {
+    background-color: cornsilk;
+    list-style: lower-latin inside; /*list-style es un shorthand para list-style-type, list-style-image y list-style-poisition*/
+  }
+
+
+  /*Si tengo ganas de mostrar las listas en forma horizontal por columnas uso las propiedas:
+    column-count: la cantidad de columnas en la que voy a poner los elementos de la lisa.
+    column-gap: el espacio entre las columnas.
+  */
+
+  .text-column-4{
+    column-count: 4;
+    column-gap: 2rem;
+    column-rule: medium solid black; /*linea pegada en la columna*/
+    column-width: 100px; /*tamaño minimo que va a medir una columna en ancho*/
+
+    list-style-position: inside; /*para que no le pegue la linea justo en la columna*/
+  }
+
+  /*tambien funcionan para otros elementos como parrafos*/
+  .text-column-3{
+    column-count: 3;
+    column-gap: 2rem;
+    column-rule: medium solid black;
+    /*linea pegada en la columna*/
+    column-width: 100px;
+    /*tamaño minimo que va a medir una columna en ancho*/
+  
+    list-style-position: inside;
+    /*para que no le pegue la linea justo en la columna*/
+  }
+
+----------------------------------------------------------------------------------------------------------
+TABLAS EN CSS 
+  .table{
+    font-size: 3rem;
+    border-collapse: collapse; /*Border collapse es para que muestre los bordes de una sola linea osea pegados, por defecto esta en separated*/
+    empty-cells: hide; /*las celdas vacias se pueden ocultar con el empty cells en hidde. PERO TIENE QUE TENER BORDER COLLAPSE EN SPARATED*/
+  }
+
+  table, th, td {
+    border: medium solid black;
+  }
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+FORMULARIO DE CONTACTO EN CSS
+  html{
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+
+  *, *::after, *::before {
+    box-sizing: inherit;
+  }
+
+  .contact-form{
+    --fomr-text-color: #666;
+    --form-placeholder-color: #006999;
+    --form-success-color: #4caf50;
+    --form-error-color: #f44336;
+    --form-bg-color: #ddd;
+    --form-border-color: #222;
+  
+    background-color: var(--form-bg-color);
+    border: thin solid var(--form-border-color);
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem;
+  }
+
+  /*Los input son en linea asi que a todos los hijos directos, inputs y textarea tengan display block*/
+  .contact-form > *{
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+    font-family: sans-serif;
+    font-size: 1rem;
+    color: var(--fomr-text-color);
+    padding: .5rem; /*para que se vea un poquito mas grandes la cajas*/
+    border-radius: .25rem;
+
+    caret-color: var(--form-placeholder-color); /*Para cambiar el color del cursor en el input*/
+  }
+
+  /*Le doy estilos al placeholder*/
+  .contact-form > *::placeholder{
+    color: var(--form-placeholder-color);
+  }
+
+  .contact-form input[type="submit"]{
+    margin-bottom: 0; /*porque tenia uno mas los 2rem del padding del form entonces salia muy arriba*/
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--form-placeholder-color);
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  .contact-form input[type="submit"]:hover{
+    cursor: pointer;
+    opacity: 0.75;
+  }
+
+  /*para que no pueda redimensionar la textarea*/
+  .contact-form textarea{
+    resize: none;
+  }
+
+  /*PARA LAS VALIDACIONES
+    Esto funciona gracias al pattern y al type email de los inputs en el HTML
+  */
+  .contact-form > *[required]:invalid{
+    border:thin solid var(--form-error-color); /*mientras tenga valor invalido se muestra el borde del input en rojito*/
+  }
+
+  .contact-form>*[required]:valid {
+    border: thin solid var(--form-success-color);
+  }
+
+************************************************************************************************************************************************
+CURSO 4 -- EFECTOS VISUALES Y MOVIMIENTOS EN CSS
+
+SOMBRAS
+  Para aplicar sombras en cajas se usa box-shadow
+      box-shadow: desplazamiento x desplazamiento y radius-blur(desenfoque) spread-blur(expansion desenfoque) color inset(OPCIONAL SI QUIERO QUE SEA INTERNA LA SOMBRA, si no pongo nada es externa)
+
+  Sombras en texto text-shadow
+      text-shadow: desplazamiento x desplazamiento y radius-blur(desenfoque) color
+
+  Filtro sombras para aplicar sombras a IMAGENES (solo con transparencia tipo png sin fondo)
+      drop-shadow(desplazamiento x desplazamiento y radius-blur(desenfoque) color)
+
+  .box-shadow {
+    box-shadow: 1rem 1rem 1rem 1rem #000; /*Si no le pongo color de la sombra va a heredar el color del texto del padre*/
+    box-shadow: -1rem -1rem 1rem 1rem; /*Se pueden poner valores negativos en x y en y para ir para el otro lado (izquierda arriba)*/
+    box-shadow: 1rem 1rem 1rem 1rem #0005; /*Le puedo meter opacidad en los colores, aca le meto negro al 50% de opacidad*/
+    box-shadow: 1rem 1rem 1rem 1rem #f00 inset; /*Sombra interna*/
+
+    text-shadow: -1rem -1rem 0.5rem hotpink;
+  }
+
+  .shadows-multiple {
+    box-shadow: 1rem 1rem 1rem 1rem #0005, 1rem 1rem 1rem 1rem #f00 inset,
+      -0.5rem -0.5rem 0.5rem 2rem hotpink; /*Para poner sombras multiples la separamos por coma*/
+
+    font-size: 2rem;
+    text-align: center;
+    text-shadow: -1rem -1rem 0.5rem navy, 1rem 1rem 0.5rem greenyellow;
+  }
+    
+  DROP SHADOW NO PUEDE METER SOMBRAS MULTIPLE
+  .drop-shadow img{
+    filter: drop-shadow(1rem 1rem 1rem red);
+  }
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+DEGRADADOS
+  Los degradados se pueden aplicar en el background pero es buena practica aplicarlos al BACKGROUND-IMAGE.
+
+  Lineal
+    Para poner degradados lineales se usa la funcion linear-gradient() y adentro los colores que quiera.
+
+    .lineal-gradient {
+      background-image: linear-gradient(red, green);
+      background-image: linear-gradient(red, green, blue);
+      background-image: linear-gradient(
+        0deg,
+        red,
+        green,
+        blue
+      ); /*Se puede pasar como primer parametro los grados de inclinacion del degradado*/
+
+      background-image: linear-gradient(20deg, red, green, blue);
+      background-image: linear-gradient(45deg, red, green, blue);
+
+      background-image: linear-gradient(
+        to right,
+        red,
+        green,
+        blue
+      ); /*Podemos usar las palabras to right to top to bottom y to left tambien*/
+      background-image: linear-gradient(to left, red, green, blue);
+      background-image: linear-gradient(to top, red, green, blue);
+      background-image: linear-gradient(to bottom, red, green, blue);
+
+      background-image: linear-gradient(
+        to top left,
+        red,
+        green,
+        blue
+      ); /*Tambien permite combinaciones de lados*/
+      background-image: linear-gradient(to top right, red, green, blue);
+      background-image: linear-gradient(to bottom left, red, green, blue);
+      background-image: linear-gradient(to bottom right, red, green, blue);
+
+      background-image: linear-gradient(
+        red 30%,
+        green 60%,
+        blue
+      ); /*Podemos elegir la cantidad de espacio que ocupa cada color al ponerles porcentajes*/
+
+      background-image: linear-gradient(
+        red 33%,
+        green 34% 67%,
+        blue 68%
+      ); /*Si ponemos dos valores porcentuales uno es para donde comienza y el otro para donde acaba*/
+    }
+
+  Radial
+    /*RADIAL*/
+    /*Funciona parecido al lineal, se usa la funcion radial-gradient*/
+    .radial-gradient {
+      background-image: radial-gradient(cyan, magenta);
+      background-image: radial-gradient(cyan, magenta, yellow);
+
+      background-image: radial-gradient(
+        circle 2em,
+        cyan,
+        magenta,
+        yellow
+      ); /*Podemos definir el tamaño del circulo del degradado*/
+
+      background-image: radial-gradient(
+        circle 4rem,
+        cyan 30%,
+        magenta 80%,
+        yellow
+      ); /*Tambien podemos darle el porcentaje a los colores*/
+
+      background-image: radial-gradient(
+        circle 100px,
+        cyan 30%,
+        magenta 60%,
+        yellow 90%
+      );
+
+      background-image: radial-gradient(
+        circle 100px at top,
+        cyan 30%,
+        magenta 60%,
+        yellow 90%
+      ); /*Podemos cambiar el centro con la palabra AT y diciendole la direccion center(defecto), top, bottom, left o right*/
+
+      background-image: radial-gradient(
+        circle 100px at top left,
+        cyan 30%,
+        magenta 60%,
+        yellow 90%
+      ); /*Tabmien acepta combinaciones de direccion*/
+
+      background-image: radial-gradient(
+        ellipse 100px 50px,
+        cyan 30%,
+        magenta 60%,
+        yellow 90%
+      ); /*Si quiero que el radio en vez de circular sea eliptico le meto ellipse y el valor de los radios en x y y*/
+    }
+
+  Conico
+    /*CONICA*/
+    /*Tambien funciona parecido a las anteriores*/
+    .conic-gradient {
+      background-image: conic-gradient(red, green);
+      background-image: conic-gradient(red, green, blue);
+      background-image: conic-gradient(red 0% 50%, green 60%, blue 80%);
+      background-image: conic-gradient(
+        red 0deg 90deg,
+        green 120deg 240deg,
+        blue 270deg
+      );
+      background-image: conic-gradient(
+        from 90deg,
+        red 0deg 90deg,
+        green 120deg 240deg,
+        blue 270deg
+      );
+      background-image: conic-gradient(
+        from 180deg,
+        red 0deg 90deg,
+        green 120deg 240deg,
+        blue 270deg
+      );
+      background-image: conic-gradient(
+        from 270deg,
+        red 0deg 90deg,
+        green 120deg 240deg,
+        blue 270deg
+      );
+    }
+
+  REPETIR DEGRADADOS
+   Hay que usar la funcion repeatin-linear-gradient-linear/radial/conic().
+
+   .repeat-gradient-linear {
+      background-image: repeating-linear-gradient(
+        red 0 10px,
+        green 10px 20px,
+        blue 20px 30px
+      );
+
+      background-image: repeating-linear-gradient(
+        90deg,
+        red 0 10px,
+        green 10px 20px,
+        blue 20px 30px
+      );
+    }
+
+  .repeat-gradient-radial {
+      background-image: repeating-radial-gradient(
+        circle 4rem,
+        cyan 0 10px,
+        magenta 10px 20px,
+        yellow 20px 30px
+      );
+  }
+
+  .repeat-gradient-conic {
+    background-image: repeating-conic-gradient(
+      red 0 8%,
+      yellow 8% 16%,
+      black 16% 24%
+    );
+  }
+
+  /*Graficas con degradados*/
+  .chart-gradient {
+    background-image: conic-gradient(cyan 0 50%, magenta 50% 80%, yellow 80%);
+    border-radius: 50%;
+  }
+
+  .donut-gradient {
+    background-image: radial-gradient(white 40%, black 41%, transparent 43%),
+    conic-gradient(cyan 0 50%, magenta 50% 80%, yellow 80%);
+    border-radius: 50%;
+  }
+
+  FILTROS
+  .card {
+    border: thick solid #000;
+    width: 600px;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5rem;
+  }
+
+  .card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 0 50%;
+  }
+
+  .filter {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 0 50%;
+
+    /*Los filtros*/
+    filter: blur(1rem);
+    filter: blur(0.15rem);
+    filter: brightness(0.6);
+    filter: brightness(12);
+    filter: contrast(0);
+    filter: contrast(0.75);
+    filter: contrast(1);
+    filter: contrast(12);
+    filter: grayscale(0.4); /*escala de grises*/
+    filter: grayscale(1);
+    filter: sepia(0.65);
+    filter: sepia(1);
+    filter: hue-rotate(
+      30deg
+    ); /*para ir cambiando colores segun el circulo cromatico*/
+    filter: hue-rotate(90deg);
+    filter: hue-rotate(180deg);
+    filter: hue-rotate(330deg);
+    filter: invert(1); /*invertir colores*/
+    filter: opacity(0.76);
+    filter: saturate(3);
+    /*Tambien el drop shadow es un filtro que vimos antes pero solo en imagenes png*/
+  }
+
+  /*Puedo hacer filtros multiples para aplicar varios simplemente separandolos por espacios*/
+  .filters-multiple {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 0 50%;
+
+    filter: blur(0.1rem) hue-rotate(270deg) opacity(0.75);
+  }
+
+  /*Quiero el texto arriba asi que le meto position relative a la card y absoluta al texto para darle ubicacion por arriba*/
+  .relative {
+    position: relative;
+  }
+
+  .backdrop-filter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /*VA A METER FLEXBOX PARA CENTRAR EL TEXTO PORQUE ES LA FORMA IDEAL*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /*LISTO CENTRADO*/
+  }
+
+  .backdrop-filter h4 {
+    background-color: rgba(255, 255, 255, 0.5);
+    font-size: 3rem;
+    padding: 2rem;
+    border-radius: 1rem;
+
+    color: #000;
+    /*Le puedo aplicar el backdrop filter al color de fondo del h4
+      funciona igual que filter pero sobre los fondos*/
+    backdrop-filter: grayscale(1);
+    backdrop-filter: sepia(1);
+    backdrop-filter: opacity(0.25);
+    backdrop-filter: hue-rotate(180deg);
+    backdrop-filter: blur(0.5rem);
+  }
+
+  .backdrop-filter-multiple {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /*VA A METER FLEXBOX PARA CENTRAR EL TEXTO PORQUE ES LA FORMA IDEAL*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /*LISTO CENTRADO*/
+  }
+
+  /*Tambien puedo aplicarlos de forma multiple al separarlos por espacio*/
+  .backdrop-filter-multiple h4 {
+    border-radius: 1rem;
+    padding: 2rem;
+    font-size: 3rem;
+    color: #fff;
+    background-color: rgba(255, 102, 255, 0.5);
+    backdrop-filter: blur(1rem) hue-rotate(240deg) opacity(0.75) invert(1);
+  }
+
+  /* Modo oscuro / claro*/
+  .dark-mode {
+    background-color: white;
+    color: #000;
+    filter: invert(1);
+  }
+
+  .dark-mode img {
+    filter: invert(
+      1
+    ); /*Volvemos a invertir solo a las imagenes para volver al valor original*/
+  }
+
+  MODOS DE MEZCLA
+
+  /*Hay que aplicar los efectos a los hijos*/
+  .blend-modes img {
+    mix-blend-mode: normal; /*Por defecto*/
+    mix-blend-mode: color;
+    mix-blend-mode: color-dodge;
+    mix-blend-mode: color-burn;
+    mix-blend-mode: multiply;
+    mix-blend-mode: screen;
+    mix-blend-mode: saturation;
+    mix-blend-mode: luminosity;
+    mix-blend-mode: hue;
+    mix-blend-mode: exclusion;
+    mix-blend-mode: difference;
+    mix-blend-mode: hard-light;
+    mix-blend-mode: soft-light;
+    mix-blend-mode: lighten;
+    mix-blend-mode: darken;
+    mix-blend-mode: overlay;
+  }
+
+  Tambien se le puede aplicar a las imagenes de fondo con background-blend-mode.
+  .bg-blend-modes {
+    background-image: url("../assets/puesta-sol.jpg"),
+      url("../assets/BuenosDias.jpg");
+    background-size: cover;
+
+    background-blend-mode: normal;
+    background-blend-mode: color;
+    background-blend-mode: darken;
+    /*Y todos los mismos modos que mix-blend-mode*/
+  }
+
+  MASCARAS
+    Se trabajan con la funcion circle-path
+
+    .clip-path {
+      clip-path: circle(); /*Modo circulo*/
+      clip-path: circle(100px); /*Puedo definir el radio del circulo*/
+      clip-path: circle(100px at top); /*Tambien puedo definir donde empieza*/
+      clip-path: circle(
+        100px at left bottom
+      ); /*Puedo especificar combinaciones de lugares*/
+      clip-path: circle(100px at 0 0); /*Puedo usar coordenads*/
+      clip-path: circle(100px at 20px);
+      clip-path: circle(100px at 30%); /*Puedo usar medidas relativas tambien*/
+
+      clip-path: ellipse(); /*Modo elipse*/
+      clip-path: ellipse(100px 50px); /*Radio en x, radio en y*/
+      clip-path: ellipse(100px 50px at top); /*Tambien puedo definir donde empieza*/
+      clip-path: ellipse(
+        100px 50px at left bottom
+      ); /*Puedo especificar combinaciones de lugares*/
+
+      clip-path: inset(
+        2rem
+      ); /*Lo hace cuadrado, siempre hay que poner un valor minimo como parametro, esto seria como un padding*/
+      clip-path: inset(
+        2rem 1rem
+      ); /*Como los padding el primer valor arriba y abajo, segundo valor lados, a mas valores se comporta como en padding*/
+      clip-path: inset(
+        1rem round 1rem
+      ); /*hace un rendodeado de las esquinas a un 1rem*/
+      clip-path: inset(
+        1rem round 1rem 2rem
+      ); /*Puedo poner varios valores para cada borde*/
+
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      /*Hace poligonos si o si tiene que tener valores. Los valores son puntos, se le dan la coordenada x e y de un punto y despues se pone coma para especificar otro punto*/
+      clip-path: polygon(
+        50% 0%,
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 91%,
+        50% 70%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+      );
+    }
+
+  FORMAS
+    Con shape-outside puedo controlar como se ven los elementos a los costados de la imagen.
+    
+    .shape-1 {
+      margin: 4rem 2rem;
+      shape-outside: circle();
+    }
+
+    En el codigo le aplique esta clase a una imagen y los parrafos que tenia abajo o al costado se acomodaron en forma de circulo alredor de la imagen, esta muy bueno. Tambien puedo usar ellpise y polygon como el clip-path. Se le puede dar valores para los radios pero se deforma un poco.
+
+
+
+
+  ***************************************** ESTOS EJERCICIOS DE ABAJO SON MUY BUENOS **********************************************************
+
+  SITIO TIPO UNA PAGINA
+    Es muy bueno esto porque muestra cada seccion ocupando toda la pantalla, single page. La explicacion y el ejercicio esta en scroll-one-page.html 
+
+  SLIDES VERTICALES, TIPO POWERPOINT
+    Son como slides de powerpoint que con mover un poco el scroll pasa automaticamente a la siguiente slide o a la anterior. Para hacerlas se usa scroll-snap-type y scroll-snap-align. Snap es el ajuste del desplazamiento. Para aplicar estas propiedades las slides y su contenido deben estar dentro de un contenedor.
+    Scroll snap type se aplica al contenedor y recibe dos valores, el primero es el eje que vamos a controlar que puede ser (x , y , inline , block o both). El segundo parametro es el modo y tenemos mandatory (mas brusco, apenas muevo el scroll pasa. IDEAL PARA SLIDES), proximity (mas suave).
+      scroll-snap-type: [x | y | inline | block | both] [mandatory | proximity]
+
+    LOS HIJOS DEBEN TENER OSEA CADA SLIDE TIENEN QUE TENER LA PROPIEDAD SCROLL-SNAP-ALIGN
+    Esta propiedad nos da hacia donde se van a alinear.
+    El ejercicio explicado esta scroll-snap-slides.html
+
+  EFECTO CARROUSEL
+    Los slides tienen que estar agrupados en linea (con flexbox mejor) y el overflow scroll en x. Despues usar las mismas propiedades scroll snap type en eje x y el scroll snap align. El ejercicio tambien esta en scroll-snap-slides.html.
+
+  TEXTO CON GRADIENTE
+    Esta en el mismo archivo scroll-snap-slides.html
+  
+***********************************************************************************************************************************************
+TRANSICIONES
+  Se hacen con:
+    transition-property: a que propiedad le quiero aplicar el efecto.
+    transition-duration: cuanto va a durar el efecto de transicion.
+    transition-timing-function: linear ease(aceleracion) ease-in(aceleracion al principio) ease-out(aceleracion al final) ease-in-out steps
+    transition-delay: tiempo de espera antes que empiece la transicion
+
+    transition: property duration timing-function delay; ES UN SHORTHAND
+
+  EN motion.html ESTA EL EJERCICIO CON LAS EXPLICACIONES. IMPORTANTE DE LEER!!!
+
+TRANSFORMACIONES 2D
+  Se usa la propiedad transform y sus funciones:
+    translateX(xrem)
+    translateY(xrem)
+    translate(xrem, xrem) [El primer valor es para X y el segundo para Y.
+
+    scaleX(x) [La agranda en X]
+    scaleY(x)
+    scale(x, x) [Primer valor X segundo valor Y] [Si le damos valores negativos invierte la imagen u objeto]
+
+    rotateX(deg) [Esta se ve cuando es 3d]
+    rotateY(deg) [Tambien seve en 3d]
+    rotateZ(deg) [Esta si se ve en 2d]
+
+    skewX(deg) [Sesgar]
+    skewY(deg)
+    skew(deg x , deg y)
+
+    matrix(scaleX(), skewY(), skewX(), scaleY(), translateX(), translateY() )  [TODOS NUMEROS ENTEROS]
+
+  Puedo hacer transformacion multiple separando por ESPACIOS en la propiedad transform
+    transform: translate(25%, -50%) rotate(240deg);
+
+
+TRANSFORMACIONES 3D
+  Primero hay que activar la pespectiva para ver en 3d.
+    Para activar la perspectiva hay que usar en la propiedad transform la funcion perspective(cantidad de perspeciva) seguido de la funcion que quiera usar.
+      transform: perspective(1000px) translateZ(4rem);
+
+    Otra forma es aplicarle al elemento padre le aplico la propiedad perspective: unidad. Y al elemento hijo ya le meto las transformaciones.
+      .transform-3d {
+        perspective: 10rem;
+      }
+
+    translate3d(X, Y, Z)
+    scaleZ(z) [El objeto tiene que tener volumen para ver el efecto]
+    scale3d(X, Y, Z)
+    rotatex(deg)
+    rotatey(deg)
+    rotate3d(var, var, var, angulo) [Los valores son nodos vectoriales y el angulo de rotacion]
+
+    Tambien tiene la funcion matrix
+       https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/matrix3d()
+        transform: matrix3d(1, 0, 0, 0, 0, 1, 6, 0, 0, 0, 1, 0, 50, 100, 0, 1.1);
+
+    Tambien permite transformaciones multiples separandolas por espacios
+
+ORIGEN DE LA TRANSFORMACION
+  El origen de la transformacion es el centro pero se puede modificar con
+    transform-origin: x y z;
+
+
+ANIMACIONES
+  Se hace con la propiedades de animation, el shorthand (solo es obligatorio nombre y duration) es:
+    animation: name duration timing-function delay iteration-count direction fill-mode play-state;
+  Por individual:
+    animation-name: Nombre que le vamos a poner a la animacion
+    animation-duration: duracion
+    animation-timing-function: ease ease-in etc...
+    animation-delay: retraso
+    animation-iteration-count: cantidad de veces que quiero que haga la animacion (existe valor infinit)
+    animation-direction: su direccion, comienza por el fotograma de inicio al final o podemos hacerlo al reves, alternate va del inicio al  final y del final al inicio. Alternate reverse es lo mismo que alternate pero al reves.
+    animation-fill-mode: define que hace la animacion cuando no esta en tiempo de ejecucion. Al final de la animacion se queda con los estilos finales del a animacion.
+      animation-fill-mode: forwards; se queda con los estilos del fotograma final
+      animation-fill-mode: backwards; se queda con los estilos del fotograma inicial
+      animation-fill-mode: both; aplica ambos
+
+      animation-play-state: en css no tiene sentido usarla es mas para javascript tiene dos valores running o pause
+
+
+  Para configurar la animacion hay que usar @keyframes nombreAnimacion, hay que darle un fotograma de inicion y uno de fin (como minimo esos dos).
+    @keyframes nombreAnimacion {
+      fotograma de inicio
+      from{
+      }
+
+      fotograma final
+      to{
+      }
+    }
+
+  Multiples fotogramas
+    Para hacer multiples fotogramas meto el inicial como 0% y al final como 100% y en el medio puedo jugar con porcentajes la cantidad de fotogramas que quiera
+
+EN motion.html HAY EJERCICIOS MUY BUENOS CON LAS EXPLICACIONES. IMPORTANTE DE LEER!!!
+
+

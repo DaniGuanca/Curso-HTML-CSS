@@ -1,0 +1,914 @@
+/*RESETEO*/
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: sans-serif;
+  overflow-x: hidden;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+/*FIN RESETEO*/
+
+body {
+  margin: 0;
+}
+
+.box {
+  border: thick solid #000;
+  width: 200px;
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5rem;
+}
+
+.card {
+  border: thick solid #000;
+  width: 600px;
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5rem;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 0 50%;
+}
+
+/*
+TRANSICIONES
+  transition-property: a que propiedad le quiero aplicar el efecto.
+  transition-duration: cuanto va a durar el efecto de transicion.
+  transition-timing-function: linear ease(aceleracion) ease-in(aceleracion al principio, va rapido al principio y despues uniforme) ease-out(empieza uniforme y hay aceleracion al final) ease-in-out (acelera al principio y final, al medio es uniforme) steps
+  transition-delay: tiempo de espera antes que empiece la transicion
+
+  transition: property duration timing-function delay; ES UN SHORTHAND
+*/
+.transitions .box {
+  background-color: magenta;
+
+  transition-property: background-color;
+  transition-duration: 500ms;
+  transition-timing-function: ease;
+  transition-delay: 0.5s;
+
+  transition: border-color 2s linear 1s; /*shorthand*/ /*Por cascada se sobrescribio los valores de arriba*/
+
+  /*Si quiero poner transicion a varias propiedades no voy a poder, entonces tengo que usar la propiedad ALL, pero no hay que usar mucho porque afecta el rendimiento (Solo si tengo muchas propiedades de transicion, APARTE TAMBIEN COMO PONEMOS ALL TODAS LAS PROPIEDADES VAN A TENER ANIMACION COMO EL DISPLAY EL VISIBILITY EL MARGEN ETC, ENTONCES CUANDO RECARGAMOS UNA PAGINA EL ELEMENTO COMIENZA A APARECER CON LA ANIMACION Y NO DE UNA COMO DEBE SER. POR ESO EN REALIDAD ES MALA PRACTICA), en este caso como solo voy a hacer transicion de color de bacgkground y de borde esta bien porque solo son 2*/
+  transition: all 2s ease-in-out 250ms;
+}
+
+.transitions .box:hover {
+  background-color: cyan;
+  border-color: red;
+  border-radius: 2rem;
+}
+
+/*Otra forma de hacer transiciones multiples sin usar la propiedad all*/
+.transitions .card {
+  transition: all 2s ease; /*no quiero delay entonces omito el valor*/
+  /*Pero eso hacce que todas las propiedades duren 2 segundos y tengan ese efecto, yo quiero que cada una tenga diferentes valores entonces las separo por comas como abajo*/
+  transition: opacity 1s ease-out, border-color 3s steps(3),
+    filter 2s ease-in 1s, box-shadow 1.5s linear 2s;
+}
+
+.transitions .card:hover {
+  opacity: 0.75;
+  border-color: orchid;
+  filter: blur(0.15rem);
+  box-shadow: 1rem 1rem 2rem 0.5rem #000;
+}
+
+/*Ahora va a hacer un efecto lindo de transicion para imagenes*/
+.transitions .card img {
+  transition: object-position 2s ease-in-out 3s;
+}
+
+.transitions .card img:hover {
+  object-position: 100% 50%;
+}
+
+/*CUANDO RECARGAMOS LAS PAGINAS PUEDE DARSE QUE SE VEAN TRANSICIONES ESO PUEDE SER POR TENER EN ALL O PORQUE TENGAMOS ALGUNA PROPIEDAD COMO BACKGROUND COLOR QUE EN EL INICIO ES DEFAULT Y DESPUES PASA AL COLOR ASIGNADO, EN ESE PASAJE TAMBIEN HAY EFECTO DE TRANSICION QUE SE VE CUANDO SE RECARGA LA PAGINA
+*/
+
+/*
+TRANSFORMACIONES 2D
+  Se usa la propiedad transform y sus funciones:
+    translateX(xrem)
+    translateY(xrem)
+    translate(xrem, xrem) [El primer valor es para X y el segundo para Y.
+
+    scaleX(x) [La agranda en X]
+    scaleY(x)
+    scale(x, x) [Primer valor X segundo valor Y] [Si le damos valores negativos invierte la imagen u objeto]
+
+    rotateX(deg) [Esta se ve cuando es 3d]
+    rotateY(deg) [Tambien seve en 3d]
+    rotateZ(deg) [Esta si se ve en 2d]
+
+    skewX(deg) [Sesgar]
+    skewY(deg)
+    skew(deg x , deg y)
+
+    matrix(scaleX(), skewY(), skewX(), scaleY(), translateX(), translateY() )  [TODOS NUMEROS ENTEROS]
+
+  Puedo hacer transformacion multiple separando por ESPACIOS en la propiedad transform
+    transform: translate(25%, -50%) rotate(240deg);
+*/
+.transform-2d img {
+  transition: transform 2s ease-in-out; /*Lo ponemos con transicion para que veamos el resultado de aplicar la transformacion cuando hacemos el hover*/
+}
+
+.transform-2d img:hover {
+  transform: none;
+  transform: translateX(4rem);
+  transform: translateY(-4rem);
+  transform: translate(4rem, -4rem);
+  transform: translate(50%, 50%);
+  transform: translate(-50%, -50%);
+  transform: translate(-50%, 100px);
+
+  transform: scaleX(2);
+  transform: scaleY(0.5);
+  transform: scale(1.5, 1.5);
+  transform: scale(-0.5, -0.5);
+
+  transform: rotateX(60deg);
+  transform: rotateY(60deg);
+  transform: rotateZ(60deg);
+  transform: rotateZ(-60deg);
+
+  transform: skewX(20deg);
+  transform: skewX(-20deg);
+  transform: skewY(20deg);
+  transform: skewY(-20deg);
+  transform: skew(20deg, 20deg);
+
+  transform: matrix(1, 2, 2, 1, 20, 10);
+
+  transform: translate(25%, -50%) rotate(240deg) skew(10deg, 20deg)
+    scale(-0.5, -0.5);
+}
+
+/*
+TRANSFORMACIONES 3D
+  Primero hay que activar la pespectiva para ver en 3d.
+    Para activar la perspectiva hay que usar en la propiedad transform la funcion perspective(cantidad de perspeciva) seguido de la funcion que quiera usar.
+      transform: perspective(1000px) translateZ(4rem);
+
+    Otra forma es aplicarle al elemento padre le aplico la propiedad perspective: unidad. Y al elemento hijo ya le meto las transformaciones.
+      .transform-3d {
+        perspective: 10rem;
+      }
+
+    translate3d(X, Y, Z)
+    scaleZ(z) [El objeto tiene que tener volumen para ver el efecto]
+    scale3d(X, Y, Z)
+    rotatex(deg)
+    rotatey(deg)
+    rotate3d(var, var, var, angulo) [Los valores son nodos vectoriales y el angulo de rotacion]
+
+    Tambien tiene la funcion matrix
+       https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/matrix3d()
+        transform: matrix3d(1, 0, 0, 0, 0, 1, 6, 0, 0, 0, 1, 0, 50, 100, 0, 1.1);
+
+    Tambien permite transformaciones multiples separandolas por espacios
+*/
+.transform-3d img {
+  transition: transform 2s ease-in-out;
+}
+
+.transform-3d {
+  perspective: 10rem;
+}
+
+.transform-3d img:hover {
+  transform: translateZ(4rem);
+  transform: perspective(1000px) translateZ(4rem);
+  transform: perspective(10rem) translateZ(4rem);
+  transform: perspective(10rem) translateZ(-4rem);
+  transform: translateZ(-4rem);
+
+  transform: translate3d(2rem, 50%, -3rem);
+
+  transform: rotateX(60deg);
+  transform: rotateY(60deg);
+  transform: rotate3d(1, 1, 1, 45deg);
+
+  /* https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/matrix3d() */
+  transform: matrix3d(1, 0, 0, 0, 0, 1, 6, 0, 0, 0, 1, 0, 50, 100, 0, 1.1);
+
+  transform: rotate3d(-1, 2.5, -2, 60deg);
+  transform: rotate3d(-1, 2.5, -2, 60deg) translate3d(2rem, 50%, -3rem);
+  transform: rotate3d(-1, 2.5, -2, 60deg) translate3d(2rem, 50%, -3rem)
+    scale3d(2, 0.5, 3);
+}
+
+/*
+ORIGEN DE LA TRANSFORMACION
+  El origen de la transformacion es el centro pero se puede modificar con
+    transform-origin: x y z;
+*/
+.transform-origin img {
+  transition: transform 2s ease-in-out;
+
+  transform-origin: 50% 50% 0; /*defecto**/
+  transform-origin: 0 0;
+  transform-origin: 0;
+  transform-origin: top left; /*tambien admite px rem y porcentajes*/
+}
+
+.transform-origin img:hover {
+  transform: rotate(360deg);
+}
+
+/*********************************************************************************************************************************************
+EJERCICIO DE TARJETITA QUE ROTA CUANDO PASAMOS Y MUESTRA LA PARTE DE ATRAS
+*/
+
+.flip-card-1,
+.flip-card-2 {
+  border: thick solid #000;
+  width: 600px;
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5rem;
+
+  position: relative;
+  cursor: pointer;
+  transition: transform 1s ease-in-out;
+  perspective: 10rem;
+  transform-style: preserve-3d; /*como se comportan los hijos en la transformacion*/
+}
+
+.flip-card-2 {
+  transform-origin: center right;
+}
+
+/*Lo aplicamos en el hover porque no es un curso de javascript, lo ideal es disparar un evento click con javascript asi ocurre cuando hacemos click*/
+.flip-card-1:hover {
+  transform: rotateY(180deg);
+}
+
+.flip-card-2:hover {
+  transform: translateX(-100%) rotateY(180deg);
+}
+
+.flip-card-1 img,
+.flip-card-2 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 0 50%;
+}
+
+.flip-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  backface-visibility: visible; /*defecto*/
+  backface-visibility: hidden;
+}
+
+.flip-front {
+  transform: rotateY(0deg);
+}
+
+.flip-back {
+  transform: rotateY(180deg);
+}
+
+/*
+ANIMACIONES
+  Se hace con la propiedades de animation, el shorthand (solo es obligatorio nombre y duration) es:
+    animation: name duration timing-function delay iteration-count direction fill-mode play-state;
+  Por individual:
+    animation-name: Nombre que le vamos a poner a la animacion
+    animation-duration: duracion
+    animation-timing-function: ease ease-in etc...
+    animation-delay: retraso
+    animation-iteration-count: cantidad de veces que quiero que haga la animacion (existe valor infinit)
+    animation-direction: su direccion, comienza por el fotograma de inicio al final o podemos hacerlo al reves, alternate va del inicio al  final y del final al inicio. Alternate reverse es lo mismo que alternate pero al reves.
+    animation-fill-mode: define que hace la animacion cuando no esta en tiempo de ejecucion. Al final de la animacion se queda con los estilos finales del a animacion.
+      animation-fill-mode: forwards; se queda con los estilos del fotograma final
+      animation-fill-mode: backwards; se queda con los estilos del fotograma inicial
+      animation-fill-mode: both; aplica ambos
+
+      animation-play-state: en css no tiene sentido usarla es mas para javascript tiene dos valores running o pause
+
+
+  Para configurar la animacion hay que usar @keyframes nombreAnimacion, hay que darle un fotograma de inicion y uno de fin (como minimo esos dos).
+    @keyframes nombreAnimacion {
+      fotograma de inicio
+      from{
+      }
+
+      fotograma final
+      to{
+      }
+    }
+*/
+
+@keyframes myAwesomeAnimation {
+  from {
+    opacity: 0;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(100%);
+  }
+}
+
+.my-animation {
+  animation-name: myAwesomeAnimation;
+  animation-duration: 2s;
+  animation-timing-function: cubic-bezier(0.52, 1.57, 0.55, -0.04);
+  animation-timing-function: ease-in-out;
+  animation-delay: 1500ms;
+  animation-delay: 0;
+  animation-iteration-count: 3;
+  animation-iteration-count: infinite;
+  /* animation-iteration-count: 1; */
+  animation-direction: alternate-reverse;
+
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards; /*se queda con los estilos del fotograma final*/
+  animation-fill-mode: backwards; /*se queda con los estilos del fotograma inicial*/
+  animation-fill-mode: both; /*aplica ambos*/
+
+  /*animation-play-state: en css no tiene sentido usarla es mas para javascript tiene dos valores running o pause*/
+
+  animation: myAwesomeAnimation 1.5s ease 250ms 6 alternate both;
+}
+
+/*
+Multiples fotogramas
+  Para hacer multiples fotogramas meto el inicial como 0% y al final como 100% y en el medio puedo jugar con porcentajes la cantidad de fotogramas que quiera
+*/
+@keyframes myAwesomeAnimation2 {
+  0% {
+    opacity: 0;
+    transform: translateX(0%);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: translateX(-50%);
+  }
+
+  75% {
+    transform: translateX(-75%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(100%);
+  }
+}
+
+.my-animation-2 {
+  animation: myAwesomeAnimation2 2s;
+}
+
+/*Animacion multiple se separa por coma*/
+@keyframes multipleAnimation1 {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes multipleAnimation2 {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+.animation-multiple {
+  animation: multipleAnimation1 2s infinite, multipleAnimation2 2s 3;
+}
+
+/**********************************************************************************************************************************************/
+/*  EJERCICION DE MOVIMIENTOS MUY BUENOS!! */
+
+.motion-examples {
+  text-align: center;
+}
+/*Ejercicio Fade In/Fade Out*/
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  font-size: 5vw;
+  animation: fadeIn 2s linear infinite alternate both;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.fade-out {
+  font-size: 5vw;
+  animation: fadeOut 2s linear infinite alternate both;
+}
+/*--------------------------------------------------------*/
+
+/*  EJERCICIO SHAKE */
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate(-1px, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate(1px, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate(-4px, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate(4px, 0);
+  }
+}
+
+.shake {
+  font-size: 5vw;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.shake:hover {
+  animation: shake 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate(0, 0);
+}
+
+/*-----------------------------------------------------------------------------------------*/
+
+/*EJERCICIO PULSE*/
+@keyframes pulse {
+  0% {
+    transform: scale(1, 1);
+  }
+
+  50% {
+    transform: scale(0.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pulse {
+  font-size: 5vw;
+  animation: pulse 1s linear infinite both;
+}
+
+/***************************************************************************/
+/* Ejercicio eres el css de mi html 
+  Hace un corazon usando divs*/
+
+@keyframes heartColor {
+  10% {
+    background-color: #d00;
+  }
+}
+
+.heart {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10vw;
+  height: 10vw; /*para que sea un cuadrado*/
+  animation: pulse 1s infinite;
+}
+
+/*Creo dos pseudelementos*/
+.heart::after,
+.heart::before {
+  position: absolute;
+  content: "";
+  left: 5vw;
+  top: 0;
+  width: 5vw;
+  height: 8vw;
+  background-color: #a00;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+  border-radius: 5vw 5vw 0 0;
+  animation: heartColor 1s infinite;
+}
+
+.heart::after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+
+/*-----------------------------------------------------------------------------------------*/
+
+/*EJERCICIO SPINNER LOADER*/
+
+/*Acá arma el spinner, una div cuadrada con bordes como negro sombreado y la hace redonda, despues pone un borde izquierdo con otro color entonces se ve como un spinner que va a ir girando*/
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  width: 5vw;
+  height: 5vw;
+  margin-left: auto;
+  margin-right: auto;
+  border: 0.5vw solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-left-color: #09f;
+  animation: spinner 1s ease-out infinite;
+}
+
+/*-----------------------------------------------------------------------------------------*/
+
+/*EJERCICIO DE ANIMACIONES PARA BOTONES. ESTAN MUY BUENOS SUPER PRACTICOS!!!!!!!!!!!!*/
+.btn {
+  position: relative;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.2rem;
+  width: 15rem;
+  height: 2.5rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0.25rem 0.25rem 0.5rem 0.25rem rgba(0, 0, 0, 0.15); /*El box shado le da un efecto lindo a los botones*/
+}
+
+/*Va a meter un efecto abajo del boton*/
+.anim-bottom::after {
+  content: ""; /*Siempre hay que especificar un content con los after y before*/
+  position: absolute;
+  bottom: 0;
+  width: 0; /*Con transiciones vamos a aumentar por eso comienza en 0*/
+  height: 0.25rem;
+  background-color: #d00;
+  transition: width 0.5s ease, left 0.5s ease, right 0.5s ease;
+}
+
+.anim-bottom:hover::after {
+  width: 100%;
+}
+
+.to-left::after {
+  left: 0;
+}
+
+.to-center::after {
+  left: 50%;
+}
+
+.to-center:hover:after {
+  left: 0;
+}
+
+.to-right::after {
+  right: 0;
+}
+
+.anim-bg-gradient {
+  background-image: linear-gradient(to right, pink, violet, orange, orangered);
+  background-size: 300% 100%; /*Le da mas ancho para que se salga del boton entonces no se ve la ultima parte de los gradientes*/
+  transition: background-position 0.5s ease-in-out;
+}
+
+.anim-bg-gradient:hover {
+  background-position: 100% 0; /*Le mando 100 para que se vaya al final, pero como le puse tamaño de fondo en 300 entonces ahora se van a ver los ultimos colores del gradiente y los primeros no*/
+}
+
+/*-----------------------------------------------------------------------------------------*/
+/*EJERCICIO TABS PARA NAV TAMBIEN ESTA BUENO*/
+
+.tabs-menu {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #ddd;
+  padding: 1rem;
+  border-radius: 1rem;
+  width: 70%;
+  height: 3rem;
+
+  /*Ahora va a usar flexbox para centrar*/
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tabs-menu input[type="radio"] {
+  display: none;
+}
+
+.tabs-menu label {
+  position: relative;
+  text-align: center;
+  z-index: 1;
+  cursor: pointer;
+  width: calc(
+    100% / 4 - 0.5rem
+  ); /*Divide el ancho total en 4 partes iguales y le asigno ese ancho. LE RESTA .5 REM POR EL PADDING ASI SE VEN DEL MISMO TAMAÑO*/
+}
+
+.tabs-menu label:hover {
+  color: #fff;
+}
+
+/*A la etiqueta hermana adyacente del input seleccionado entonces va a quedar de color blanco el label que le correspode al input que esta con display none*/
+.tabs-menu input[type="radio"]:checked + label {
+  color: #fff;
+}
+
+/*esta va a ser una barrita que se va a ir poniendo debajo de las tabs*/
+.tab-bg-hover {
+  position: absolute;
+  width: calc(100% / 4 - 0.5rem); /*mismo ancho que la tab*/
+  height: 2rem;
+  background-image: linear-gradient(90deg, #a00, #d00);
+  border-radius: 0.5rem;
+  transition: transform 300ms ease-in-out;
+}
+
+/*~ hermanos en general*/
+#tab-1:checked ~ .tab-bg-hover {
+  transform: translateX(0);
+}
+
+#tab-2:checked ~ .tab-bg-hover {
+  transform: translateX(100%);
+}
+
+#tab-3:checked ~ .tab-bg-hover {
+  transform: translateX(200%);
+}
+
+#tab-4:checked ~ .tab-bg-hover {
+  transform: translateX(300%);
+}
+
+/*-----------------------------------------------------------------------------------------*/
+/*EJERCICIO MENU HAMBURGUESA*/
+.off-canvas-btn {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 999;
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.off-canvas-burger {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 998;
+  width: 3rem;
+  height: 0.6rem;
+  background-color: #d00;
+  border-radius: 0.3rem;
+  transform: rotate(0deg) translate(0, -1.2rem);
+  transition: transform 500ms ease, background-color 500ms ease;
+  transform-origin: top left;
+}
+
+/*La linea de arriba y abajo del boton hamburguesa*/
+.off-canvas-burger::before,
+.off-canvas-burger::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 0.6rem;
+  background-color: #d00;
+  border-radius: 0.3rem;
+  transition: transform 500ms ease;
+}
+
+.off-canvas-burger::before {
+  transform: rotate(0deg) translate(0, -0.9rem);
+}
+
+.off-canvas-burger::after {
+  transform: rotate(0deg) translate(0, 0.3rem);
+}
+
+.off-canvas-btn:checked + .off-canvas-burger {
+  background-color: transparent;
+}
+
+.off-canvas-btn:checked + .off-canvas-burger::before {
+  transform: rotate(45deg) translate(0, 0);
+}
+
+.off-canvas-btn:checked + .off-canvas-burger::after {
+  transform: rotate(-45deg) translate(0.4rem, -0.5rem);
+}
+
+.off-canvas-menu {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #0008;
+  z-index: 997;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transform: translate(0, -100%); /*va a estar oculto arriba*/
+  transition: transform 500ms ease-in-out;
+}
+
+.off-canvas-menu-container {
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.off-canvas-link {
+  padding: 2rem;
+  border-bottom: thin solid #d00;
+  font-size: 1.5rem;
+  text-decoration: none;
+  text-align: center;
+  color: #fff;
+  transition: background-color 300ms ease;
+}
+
+.off-canvas-link:hover {
+  background-color: #d005;
+}
+
+.off-canvas-link:first-child {
+  border-top: thin solid #d00;
+}
+
+.off-canvas-btn:checked ~ .off-canvas-menu {
+  transform: translate(0, 0); /*que aparezca porque estaba escondido arriba*/
+}
+
+/*-----------------------------------------------------------------------------------------*/
+/*EJERCICIO VENTANA MODAL*/
+.modal {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #0008;
+  z-index: 997;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none; /*Esto para que los elementos no sean interactivos*/
+  transition: opacity 500ms ease-in-out;
+}
+
+.modal:target {
+  opacity: 1;
+  pointer-events: auto; /*Para que vuelva a ser interactivo*/
+}
+
+.modal-container {
+  position: relative;
+  border: thick double #d00;
+  border-radius: 1rem;
+  padding: 2rem;
+  background-color: #fff;
+  width: 70%;
+  height: 70vh;
+  text-align: left;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 3rem;
+  height: 3rem;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #d00;
+  text-align: center;
+  line-height: 3rem; /*como es un solo caracter directamente lo centro verticalmente con esto*/
+  text-decoration: none;
+  border-radius: 50%;
+  transition: background-color 300ms linear, transform 300ms ease-in-out;
+}
+
+.modal-close:hover {
+  background-color: #a00;
+  transform: scale(1.2);
+}
+
+/*-----------------------------------------------------------------------------------------*/
+/*EJERCICIO INTRO STAR WARS*/
+@keyframes introStarWars {
+  0% {
+    transform: perspective(100vh) rotateX(15deg) translateY(100%);
+  }
+
+  100% {
+    transform: perspective(100vh) rotateX(25deg) translateY(-200%);
+  }
+}
+
+.star-wars {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  color: #ffb13a;
+  background-image: url("../assets/stars.gif");
+}
+
+.star-wars-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  text-align: justify;
+  letter-spacing: 0.1rem;
+  animation: introStarWars 20s linear infinite;
+}
+
+.star-wars h2,
+.star-wars h3 {
+  font-size: 5vw;
+  text-align: center;
+}
+
+.star-wars p {
+  font-size: 3vw;
+  line-height: 4rem;
+}

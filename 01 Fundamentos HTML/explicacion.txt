@@ -1,0 +1,28 @@
+Por convencion la pagina principal es index.html
+
+Un recordatorio de las abreviaciones emmet:
+  Esto 
+    ul#menu>li.item*4>a{Seccion $}
+  
+  Genera esto
+    <ul id="menu">
+      <li class="item"><a href="">Seccion 1</a></li>
+      <li class="item"><a href="">Seccion 2</a></li>
+      <li class="item"><a href="">Seccion 3</a></li>
+      <li class="item"><a href="">Seccion 4</a></li>
+      <li class="item"><a href="">Seccion 4</a></li>
+      <li class="item"><a href="">Seccion 4</a></li>
+    </ul>
+
+Busca en google visual studio code cheat sheet y ahi estan los atajos
+
+ESTE META ES BIEN IMPORTANTE SI QUIERO QUE SALGA BIEN LA DESCRPICION EN GOOGLE:
+  <meta name="description" content="una descripcion">
+
+Con etiqueta <pre> un texto alguno </pre> me respeta espacios e identacion de lo que ponga adentro, osea si pongo solo texto comun
+
+EN SVG REPO.COM HAY MUCHOS SVG SI NECESITO ALGUNO
+
+CUANDO PONEMOS # NOS ESTAMOS REFIRIENDO A UN ENLACE INTERNO Y NOS MANDA AL ELEMENTO QUE TENGA EL ID ESCRITO EN ESTE CASO AL ELEMENTO CON ID inicio.
+SOLO FUNCIONA CON ID
+<a href="index.html#inicio">

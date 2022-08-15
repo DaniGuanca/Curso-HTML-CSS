@@ -1,0 +1,9 @@
+.table{
+  font-size: 3rem;
+  border-collapse: collapse; /*Border collapse es para que muestre los bordes de una sola linea osea pegados, por defecto esta en separated*/
+  empty-cells: hide; /*las celdas vacias se pueden ocultar con el empty cells en hidde. PERO TIENE QUE TENER BORDER COLLAPSE EN SPARATED*/
+}
+
+table, th, td {
+  border: medium solid black;
+}
